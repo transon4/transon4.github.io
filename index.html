@@ -1,0 +1,1057 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vision Perfect | Premium Eyewear</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f8f9fa;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header & Navigation */
+        header {
+            background: white;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+        
+        .logo {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 24px;
+            font-weight: 700;
+            color: #2563eb;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .logo i {
+            font-size: 28px;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+        
+        nav a {
+            text-decoration: none;
+            color: #4b5563;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        nav a:hover {
+            color: #2563eb;
+        }
+        
+        .cart-icon {
+            position: relative;
+            font-size: 22px;
+            color: #4b5563;
+        }
+        
+        .cart-count {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background: #ef4444;
+            color: white;
+            font-size: 12px;
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+            color: white;
+            padding: 80px 0;
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        
+        .hero h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+        
+        .hero p {
+            font-size: 20px;
+            margin-bottom: 30px;
+            opacity: 0.9;
+        }
+        
+        .cta-button {
+            display: inline-block;
+            background: white;
+            color: #2563eb;
+            padding: 15px 40px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 18px;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+        
+        /* Filters */
+        .filters {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            margin-bottom: 40px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            align-items: center;
+        }
+        
+        .filter-group {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .filter-group label {
+            font-weight: 500;
+            color: #4b5563;
+        }
+        
+        select, .price-range {
+            padding: 8px 15px;
+            border: 2px solid #e5e7eb;
+            border-radius: 6px;
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        /* Products Grid */
+        .products-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+        
+        .products-header h2 {
+            font-size: 32px;
+            color: #1f2937;
+        }
+        
+        .sort-options select {
+            padding: 10px 20px;
+        }
+        
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+        
+        .product-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+        }
+        
+        .product-image {
+            height: 200px;
+            background: linear-gradient(135deg, #f3f4f6 0%, #e5e7eb 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+        
+        .product-image i {
+            font-size: 80px;
+            color: #9ca3af;
+        }
+        
+        .sale-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: #ef4444;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 4px;
+            font-size: 14px;
+            font-weight: 600;
+        }
+        
+        .product-info {
+            padding: 20px;
+        }
+        
+        .product-category {
+            color: #6b7280;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 5px;
+        }
+        
+        .product-title {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: #1f2937;
+        }
+        
+        .product-price {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+        
+        .current-price {
+            font-size: 22px;
+            font-weight: 700;
+            color: #2563eb;
+        }
+        
+        .original-price {
+            font-size: 16px;
+            color: #9ca3af;
+            text-decoration: line-through;
+        }
+        
+        .product-colors {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 15px;
+        }
+        
+        .color-dot {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            cursor: pointer;
+        }
+        
+        .color-black { background: #1f2937; }
+        .color-brown { background: #92400e; }
+        .color-gold { background: #d97706; }
+        .color-silver { background: #9ca3af; }
+        .color-blue { background: #2563eb; }
+        
+        .product-actions {
+            display: flex;
+            gap: 10px;
+        }
+        
+        .add-to-cart, .quick-view {
+            flex: 1;
+            padding: 12px;
+            border: none;
+            border-radius: 6px;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .add-to-cart {
+            background: #2563eb;
+            color: white;
+        }
+        
+        .add-to-cart:hover {
+            background: #1d4ed8;
+        }
+        
+        .quick-view {
+            background: #f3f4f6;
+            color: #4b5563;
+        }
+        
+        .quick-view:hover {
+            background: #e5e7eb;
+        }
+        
+        /* Footer */
+        footer {
+            background: #1f2937;
+            color: white;
+            padding: 60px 0 30px;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-column h3 {
+            font-size: 20px;
+            margin-bottom: 20px;
+            color: #fbbf24;
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-links a {
+            color: #d1d5db;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-links a:hover {
+            color: white;
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid #374151;
+            color: #9ca3af;
+            font-size: 14px;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-container {
+                flex-direction: column;
+                gap: 20px;
+            }
+            
+            nav ul {
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 15px;
+            }
+            
+            .hero h1 {
+                font-size: 36px;
+            }
+            
+            .filters {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            
+            .filter-group {
+                justify-content: space-between;
+            }
+            
+            .products-header {
+                flex-direction: column;
+                gap: 20px;
+                text-align: center;
+            }
+            
+            .products-grid {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            }
+        }
+        
+        /* Cart Sidebar */
+        .cart-sidebar {
+            position: fixed;
+            top: 0;
+            right: -400px;
+            width: 380px;
+            height: 100vh;
+            background: white;
+            box-shadow: -5px 0 25px rgba(0,0,0,0.1);
+            transition: right 0.3s ease;
+            z-index: 1001;
+            padding: 30px;
+            overflow-y: auto;
+        }
+        
+        .cart-sidebar.active {
+            right: 0;
+        }
+        
+        .cart-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.5);
+            z-index: 1000;
+            display: none;
+        }
+        
+        .cart-overlay.active {
+            display: block;
+        }
+        
+        .close-cart {
+            background: none;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            color: #6b7280;
+            float: right;
+        }
+        
+        .cart-items {
+            margin: 40px 0;
+        }
+        
+        .cart-total {
+            display: flex;
+            justify-content: space-between;
+            font-size: 20px;
+            font-weight: 700;
+            margin: 20px 0;
+            padding-top: 20px;
+            border-top: 2px solid #e5e7eb;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="nav-container">
+                <a href="#" class="logo">
+                    <i class="fas fa-glasses"></i>
+                    VisionPerfect
+                </a>
+                <nav>
+                    <ul>
+                        <li><a href="#"><i class="fas fa-home"></i> Home</a></li>
+                        <li><a href="#"><i class="fas fa-shopping-bag"></i> Shop</a></li>
+                        <li><a href="#"><i class="fas fa-star"></i> Brands</a></li>
+                        <li><a href="#"><i class="fas fa-user"></i> About</a></li>
+                        <li><a href="#"><i class="fas fa-envelope"></i> Contact</a></li>
+                    </ul>
+                </nav>
+                <div class="cart-icon" id="cartIcon">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span class="cart-count">0</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1>See the World in Perfect Focus</h1>
+            <p>Premium glasses frames starting from $59.99. Free shipping on orders over $100.</p>
+            <a href="#products" class="cta-button">Shop Collection</a>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <div class="container">
+        <!-- Filters -->
+        <div class="filters">
+            <div class="filter-group">
+                <label for="category"><i class="fas fa-filter"></i> Category:</label>
+                <select id="category">
+                    <option>All Glasses</option>
+                    <option>Prescription</option>
+                    <option>Sunglasses</option>
+                    <option>Reading</option>
+                </select>
+            </div>
+            
+            <div class="filter-group">
+                <label for="gender"><i class="fas fa-user"></i> Gender:</label>
+                <select id="gender">
+                    <option>All</option>
+                    <option>Men</option>
+                    <option>Women</option>
+                    <option>Unisex</option>
+                </select>
+            </div>
+            
+            <div class="filter-group">
+                <label for="price"><i class="fas fa-dollar-sign"></i> Price:</label>
+                <select id="price">
+                    <option>All Prices</option>
+                    <option>Under $100</option>
+                    <option>$100 - $200</option>
+                    <option>$200 - $300</option>
+                    <option>Over $300</option>
+                </select>
+            </div>
+            
+            <div class="filter-group">
+                <label for="frame"><i class="fas fa-square"></i> Frame:</label>
+                <select id="frame">
+                    <option>All Types</option>
+                    <option>Full Rim</option>
+                    <option>Half Rim</option>
+                    <option>Rimless</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- Products -->
+        <div class="products-header">
+            <h2 id="products">Premium Glasses Collection</h2>
+            <div class="sort-options">
+                <select id="sort">
+                    <option>Sort by: Featured</option>
+                    <option>Price: Low to High</option>
+                    <option>Price: High to Low</option>
+                    <option>Newest First</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- Products Grid -->
+        <div class="products-grid" id="productsGrid">
+            <!-- Products will be loaded here by JavaScript -->
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>VisionPerfect</h3>
+                    <p>Premium eyewear for every vision need. Quality frames at unbeatable prices.</p>
+                </div>
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#">Shop All</a></li>
+                        <li><a href="#">Prescription Glasses</a></li>
+                        <li><a href="#">Sunglasses</a></li>
+                        <li><a href="#">Contact Lenses</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Support</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">FAQ</a></li>
+                        <li><a href="#">Shipping & Returns</a></li>
+                        <li><a href="#">Size Guide</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Contact</h3>
+                    <ul class="footer-links">
+                        <li><i class="fas fa-map-marker-alt"></i> 123 Vision Street, NY 10001</li>
+                        <li><i class="fas fa-phone"></i> (555) 123-4567</li>
+                        <li><i class="fas fa-envelope"></i> info@visionperfect.com</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2024 VisionPerfect. All rights reserved. | Prices in USD</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Cart Sidebar -->
+    <div class="cart-overlay" id="cartOverlay"></div>
+    <div class="cart-sidebar" id="cartSidebar">
+        <button class="close-cart" id="closeCart">&times;</button>
+        <h2><i class="fas fa-shopping-cart"></i> Your Cart</h2>
+        <div class="cart-items" id="cartItems">
+            <!-- Cart items will be loaded here -->
+            <p style="text-align: center; color: #6b7280;">Your cart is empty</p>
+        </div>
+        <div class="cart-total">
+            <span>Total:</span>
+            <span id="cartTotal">$0.00</span>
+        </div>
+        <button class="add-to-cart" style="width: 100%;">Checkout</button>
+    </div>
+
+    <script>
+        // Sample Product Data
+        const products = [
+            {
+                id: 1,
+                name: "Classic Aviator",
+                category: "sunglasses",
+                gender: "unisex",
+                price: 159.99,
+                originalPrice: 199.99,
+                frame: "full rim",
+                colors: ["black", "gold", "silver"],
+                onSale: true,
+                saleText: "20% OFF"
+            },
+            {
+                id: 2,
+                name: "Modern Square",
+                category: "prescription",
+                gender: "men",
+                price: 129.99,
+                originalPrice: null,
+                frame: "full rim",
+                colors: ["black", "brown", "blue"],
+                onSale: false
+            },
+            {
+                id: 3,
+                name: "Round Vintage",
+                category: "prescription",
+                gender: "women",
+                price: 145.50,
+                originalPrice: 179.99,
+                frame: "full rim",
+                colors: ["gold", "silver"],
+                onSale: true,
+                saleText: "SAVE $34"
+            },
+            {
+                id: 4,
+                name: "Cat-Eye Fashion",
+                category: "prescription",
+                gender: "women",
+                price: 89.99,
+                originalPrice: null,
+                frame: "half rim",
+                colors: ["black", "brown", "gold"],
+                onSale: false
+            },
+            {
+                id: 5,
+                name: "Sports Wrap",
+                category: "sunglasses",
+                gender: "men",
+                price: 199.99,
+                originalPrice: 249.99,
+                frame: "full rim",
+                colors: ["black", "blue"],
+                onSale: true,
+                saleText: "BEST SELLER"
+            },
+            {
+                id: 6,
+                name: "Rimless Elegance",
+                category: "prescription",
+                gender: "unisex",
+                price: 219.99,
+                originalPrice: null,
+                frame: "rimless",
+                colors: ["silver", "gold"],
+                onSale: false
+            },
+            {
+                id: 7,
+                name: "Wayfarer Classic",
+                category: "sunglasses",
+                gender: "unisex",
+                price: 79.99,
+                originalPrice: 99.99,
+                frame: "full rim",
+                colors: ["black", "brown"],
+                onSale: true,
+                saleText: "LIMITED TIME"
+            },
+            {
+                id: 8,
+                name: "Oversized Glam",
+                category: "sunglasses",
+                gender: "women",
+                price: 134.99,
+                originalPrice: null,
+                frame: "full rim",
+                colors: ["black", "gold", "silver"],
+                onSale: false
+            }
+        ];
+
+        // Cart state
+        let cart = [];
+        let cartCount = 0;
+        let cartTotal = 0;
+
+        // DOM Elements
+        const productsGrid = document.getElementById('productsGrid');
+        const cartIcon = document.getElementById('cartIcon');
+        const cartSidebar = document.getElementById('cartSidebar');
+        const cartOverlay = document.getElementById('cartOverlay');
+        const closeCart = document.getElementById('closeCart');
+        const cartItems = document.getElementById('cartItems');
+        const cartTotalElement = document.getElementById('cartTotal');
+        const cartCountElement = document.querySelector('.cart-count');
+
+        // Initialize the page
+        function init() {
+            renderProducts();
+            setupEventListeners();
+            updateCartDisplay();
+        }
+
+        // Render all products
+        function renderProducts() {
+            productsGrid.innerHTML = '';
+            
+            products.forEach(product => {
+                const productCard = document.createElement('div');
+                productCard.className = 'product-card';
+                
+                // Color dots HTML
+                const colorDots = product.colors.map(color => 
+                    `<div class="color-dot color-${color}" title="${color.charAt(0).toUpperCase() + color.slice(1)}"></div>`
+                ).join('');
+                
+                // Price HTML
+                let priceHTML = `<div class="current-price">$${product.price.toFixed(2)}</div>`;
+                if (product.originalPrice) {
+                    priceHTML += `<div class="original-price">$${product.originalPrice.toFixed(2)}</div>`;
+                }
+                
+                // Sale badge HTML
+                const saleBadge = product.onSale ? 
+                    `<div class="sale-badge">${product.saleText}</div>` : '';
+                
+                productCard.innerHTML = `
+                    <div class="product-image">
+                        <i class="fas fa-glasses"></i>
+                        ${saleBadge}
+                    </div>
+                    <div class="product-info">
+                        <div class="product-category">${product.category.toUpperCase()}</div>
+                        <h3 class="product-title">${product.name}</h3>
+                        <div class="product-price">
+                            ${priceHTML}
+                        </div>
+                        <div class="product-colors">
+                            ${colorDots}
+                        </div>
+                        <div class="product-actions">
+                            <button class="add-to-cart" onclick="addToCart(${product.id})">
+                                <i class="fas fa-cart-plus"></i> Add to Cart
+                            </button>
+                            <button class="quick-view">
+                                <i class="fas fa-eye"></i> Quick View
+                            </button>
+                        </div>
+                    </div>
+                `;
+                
+                productsGrid.appendChild(productCard);
+            });
+        }
+
+        // Cart functions
+        function addToCart(productId) {
+            const product = products.find(p => p.id === productId);
+            
+            // Check if product is already in cart
+            const existingItem = cart.find(item => item.id === productId);
+            
+            if (existingItem) {
+                existingItem.quantity += 1;
+            } else {
+                cart.push({
+                    ...product,
+                    quantity: 1
+                });
+            }
+            
+            cartCount += 1;
+            cartTotal += product.price;
+            
+            updateCartDisplay();
+            showAddedToCartNotification(product.name);
+        }
+
+        function updateCartDisplay() {
+            // Update cart count
+            cartCountElement.textContent = cartCount;
+            
+            // Update cart total
+            cartTotalElement.textContent = `$${cartTotal.toFixed(2)}`;
+            
+            // Update cart items list
+            if (cart.length === 0) {
+                cartItems.innerHTML = '<p style="text-align: center; color: #6b7280;">Your cart is empty</p>';
+                return;
+            }
+            
+            let cartItemsHTML = '';
+            cart.forEach(item => {
+                cartItemsHTML += `
+                    <div style="display: flex; align-items: center; padding: 15px 0; border-bottom: 1px solid #e5e7eb;">
+                        <div style="margin-right: 15px;">
+                            <i class="fas fa-glasses" style="font-size: 40px; color: #9ca3af;"></i>
+                        </div>
+                        <div style="flex: 1;">
+                            <div style="font-weight: 600;">${item.name}</div>
+                            <div style="color: #6b7280; font-size: 14px;">Qty: ${item.quantity}</div>
+                        </div>
+                        <div style="font-weight: 700; color: #2563eb;">
+                            $${(item.price * item.quantity).toFixed(2)}
+                        </div>
+                    </div>
+                `;
+            });
+            
+            cartItems.innerHTML = cartItemsHTML;
+        }
+
+        function showAddedToCartNotification(productName) {
+            // Create notification element
+            const notification = document.createElement('div');
+            notification.style.cssText = `
+                position: fixed;
+                top: 20px;
+                right: 20px;
+                background: #10b981;
+                color: white;
+                padding: 15px 25px;
+                border-radius: 8px;
+                box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+                z-index: 10000;
+                animation: slideIn 0.3s ease;
+                font-weight: 500;
+            `;
+            
+            notification.innerHTML = `
+                <i class="fas fa-check-circle" style="margin-right: 10px;"></i>
+                ${productName} added to cart!
+            `;
+            
+            document.body.appendChild(notification);
+            
+            // Remove after 3 seconds
+            setTimeout(() => {
+                notification.style.animation = 'slideOut 0.3s ease';
+                setTimeout(() => {
+                    document.body.removeChild(notification);
+                }, 300);
+            }, 3000);
+        }
+
+        // Setup event listeners
+        function setupEventListeners() {
+            // Cart toggle
+            cartIcon.addEventListener('click', () => {
+                cartSidebar.classList.add('active');
+                cartOverlay.classList.add('active');
+            });
+            
+            closeCart.addEventListener('click', () => {
+                cartSidebar.classList.remove('active');
+                cartOverlay.classList.remove('active');
+            });
+            
+            cartOverlay.addEventListener('click', () => {
+                cartSidebar.classList.remove('active');
+                cartOverlay.classList.remove('active');
+            });
+            
+            // Filter functionality
+            document.getElementById('category').addEventListener('change', filterProducts);
+            document.getElementById('gender').addEventListener('change', filterProducts);
+            document.getElementById('price').addEventListener('change', filterProducts);
+            document.getElementById('frame').addEventListener('change', filterProducts);
+            document.getElementById('sort').addEventListener('change', sortProducts);
+        }
+
+        // Filter products based on selected filters
+        function filterProducts() {
+            const category = document.getElementById('category').value.toLowerCase();
+            const gender = document.getElementById('gender').value.toLowerCase();
+            const price = document.getElementById('price').value;
+            const frame = document.getElementById('frame').value.toLowerCase();
+            
+            const filtered = products.filter(product => {
+                // Filter by category
+                if (category !== 'all glasses' && !product.category.includes(category)) {
+                    return false;
+                }
+                
+                // Filter by gender
+                if (gender !== 'all' && product.gender !== gender) {
+                    return false;
+                }
+                
+                // Filter by price
+                if (price !== 'all prices') {
+                    if (price === 'under $100' && product.price >= 100) return false;
+                    if (price === '$100 - $200' && (product.price < 100 || product.price > 200)) return false;
+                    if (price === '$200 - $300' && (product.price < 200 || product.price > 300)) return false;
+                    if (price === 'over $300' && product.price <= 300) return false;
+                }
+                
+                // Filter by frame
+                if (frame !== 'all types' && !product.frame.includes(frame)) {
+                    return false;
+                }
+                
+                return true;
+            });
+            
+            renderFilteredProducts(filtered);
+        }
+
+        // Sort products
+        function sortProducts() {
+            const sortBy = document.getElementById('sort').value;
+            let sorted = [...products];
+            
+            switch(sortBy) {
+                case 'Price: Low to High':
+                    sorted.sort((a, b) => a.price - b.price);
+                    break;
+                case 'Price: High to Low':
+                    sorted.sort((a, b) => b.price - a.price);
+                    break;
+                case 'Newest First':
+                    // For demo, reverse the array
+                    sorted.reverse();
+                    break;
+            }
+            
+            renderFilteredProducts(sorted);
+        }
+
+        // Render filtered products
+        function renderFilteredProducts(filteredProducts) {
+            productsGrid.innerHTML = '';
+            
+            if (filteredProducts.length === 0) {
+                productsGrid.innerHTML = `
+                    <div style="grid-column: 1 / -1; text-align: center; padding: 60px 20px;">
+                        <i class="fas fa-search" style="font-size: 60px; color: #9ca3af; margin-bottom: 20px;"></i>
+                        <h3 style="color: #4b5563;">No products found</h3>
+                        <p style="color: #6b7280;">Try adjusting your filters</p>
+                    </div>
+                `;
+                return;
+            }
+            
+            filteredProducts.forEach(product => {
+                const productCard = document.createElement('div');
+                productCard.className = 'product-card';
+                
+                const colorDots = product.colors.map(color => 
+                    `<div class="color-dot color-${color}" title="${color.charAt(0).toUpperCase() + color.slice(1)}"></div>`
+                ).join('');
+                
+                let priceHTML = `<div class="current-price">$${product.price.toFixed(2)}</div>`;
+                if (product.originalPrice) {
+                    priceHTML += `<div class="original-price">$${product.originalPrice.toFixed(2)}</div>`;
+                }
+                
+                const saleBadge = product.onSale ? 
+                    `<div class="sale-badge">${product.saleText}</div>` : '';
+                
+                productCard.innerHTML = `
+                    <div class="product-image">
+                        <i class="fas fa-glasses"></i>
+                        ${saleBadge}
+                    </div>
+                    <div class="product-info">
+                        <div class="product-category">${product.category.toUpperCase()}</div>
+                        <h3 class="product-title">${product.name}</h3>
+                        <div class="product-price">
+                            ${priceHTML}
+                        </div>
+                        <div class="product-colors">
+                            ${colorDots}
+                        </div>
+                        <div class="product-actions">
+                            <button class="add-to-cart" onclick="addToCart(${product.id})">
+                                <i class="fas fa-cart-plus"></i> Add to Cart
+                            </button>
+                            <button class="quick-view">
+                                <i class="fas fa-eye"></i> Quick View
+                            </button>
+                        </div>
+                    </div>
+                `;
+                
+                productsGrid.appendChild(productCard);
+            });
+        }
+
+        // Add CSS animation for notification
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes slideIn {
+                from {
+                    transform: translateX(100%);
+                    opacity: 0;
+                }
+                to {
+                    transform: translateX(0);
+                    opacity: 1;
+                }
+            }
+            
+            @keyframes slideOut {
+                from {
+                    transform: translateX(0);
+                    opacity: 1;
+                }
+                to {
+                    transform: translateX(100%);
+                    opacity: 0;
+                }
+            }
+        `;
+        document.head.appendChild(style);
+
+        // Initialize the page when loaded
+        document.addEventListener('DOMContentLoaded', init);
+    </script>
+</body>
+</html>
