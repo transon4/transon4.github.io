@@ -1,0 +1,1188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order History - Vision Perfect</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        :root {
+            --primary-blue: #2563eb;
+            --primary-blue-dark: #1d4ed8;
+            --light-blue: #eff6ff;
+            --light-gray: #f8fafc;
+            --medium-gray: #e2e8f0;
+            --dark-gray: #64748b;
+            --text-dark: #1e293b;
+            --text-light: #475569;
+            --white: #ffffff;
+            --success-green: #10b981;
+            --warning-yellow: #f59e0b;
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            --radius: 8px;
+            --transition: all 0.3s ease;
+        }
+        
+        body {
+            font-family: 'Montserrat', sans-serif;
+            color: var(--text-dark);
+            background-color: var(--light-gray);
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+        
+        /* Header */
+        header {
+            background-color: var(--white);
+            box-shadow: var(--shadow);
+            padding: 1rem 0;
+            margin-bottom: 2rem;
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-blue);
+            text-decoration: none;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+        
+        .nav-links a {
+            color: var(--text-dark);
+            text-decoration: none;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: var(--transition);
+        }
+        
+        .nav-links a:hover {
+            color: var(--primary-blue);
+        }
+        
+        /* Admin Controls */
+        .admin-controls {
+            background: var(--white);
+            border-radius: var(--radius);
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+            box-shadow: var(--shadow);
+        }
+        
+        .control-buttons {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+        
+        .btn {
+            padding: 0.75rem 1.5rem;
+            border-radius: var(--radius);
+            font-weight: 600;
+            border: none;
+            cursor: pointer;
+            transition: var(--transition);
+            font-family: 'Montserrat', sans-serif;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .btn-primary {
+            background-color: var(--primary-blue);
+            color: var(--white);
+        }
+        
+        .btn-primary:hover {
+            background-color: var(--primary-blue-dark);
+            transform: translateY(-2px);
+        }
+        
+        .btn-secondary {
+            background-color: var(--light-gray);
+            color: var(--text-dark);
+        }
+        
+        .btn-secondary:hover {
+            background-color: var(--medium-gray);
+        }
+        
+        .btn-success {
+            background-color: var(--success-green);
+            color: var(--white);
+        }
+        
+        .btn-danger {
+            background-color: #ef4444;
+            color: var(--white);
+        }
+        
+        /* Orders Table */
+        .orders-container {
+            background: var(--white);
+            border-radius: var(--radius);
+            padding: 2rem;
+            box-shadow: var(--shadow);
+            margin-bottom: 3rem;
+        }
+        
+        .orders-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        
+        .orders-header h1 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.75rem;
+        }
+        
+        .stats {
+            display: flex;
+            gap: 2rem;
+            font-size: 0.9rem;
+        }
+        
+        .stat-item {
+            text-align: center;
+        }
+        
+        .stat-value {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-blue);
+        }
+        
+        .stat-label {
+            color: var(--text-light);
+            font-size: 0.8rem;
+        }
+        
+        /* Table Styles */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 1rem;
+        }
+        
+        thead {
+            background-color: var(--light-gray);
+        }
+        
+        th {
+            padding: 1rem;
+            text-align: left;
+            font-weight: 600;
+            color: var(--text-dark);
+            border-bottom: 2px solid var(--medium-gray);
+        }
+        
+        td {
+            padding: 1rem;
+            border-bottom: 1px solid var(--light-gray);
+        }
+        
+        tr:hover {
+            background-color: var(--light-blue);
+        }
+        
+        /* Status Badges */
+        .status-badge {
+            padding: 0.25rem 0.75rem;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            display: inline-block;
+        }
+        
+        .status-processing {
+            background-color: #fef3c7;
+            color: #92400e;
+        }
+        
+        .status-shipped {
+            background-color: #d1fae5;
+            color: #065f46;
+        }
+        
+        .status-delivered {
+            background-color: #dbeafe;
+            color: #1e40af;
+        }
+        
+        .status-cancelled {
+            background-color: #fee2e2;
+            color: #991b1b;
+        }
+        
+        /* Order Details Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            z-index: 1000;
+            overflow-y: auto;
+            padding: 2rem;
+        }
+        
+        .modal.active {
+            display: block;
+        }
+        
+        .modal-content {
+            background: var(--white);
+            border-radius: var(--radius);
+            padding: 2rem;
+            max-width: 800px;
+            margin: 2rem auto;
+            position: relative;
+            animation: slideUp 0.3s ease;
+        }
+        
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .modal-close {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--dark-gray);
+        }
+        
+        .modal-header {
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid var(--light-gray);
+        }
+        
+        .order-details-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .detail-section h3 {
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+            color: var(--text-dark);
+        }
+        
+        .detail-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.5rem;
+            padding: 0.5rem 0;
+            border-bottom: 1px solid var(--light-gray);
+        }
+        
+        .detail-item:last-child {
+            border-bottom: none;
+        }
+        
+        .detail-label {
+            color: var(--text-light);
+        }
+        
+        .detail-value {
+            font-weight: 500;
+        }
+        
+        /* Order Items */
+        .order-items {
+            margin: 2rem 0;
+        }
+        
+        .order-item-detail {
+            display: flex;
+            gap: 1rem;
+            padding: 1rem;
+            background: var(--light-gray);
+            border-radius: var(--radius);
+            margin-bottom: 1rem;
+        }
+        
+        .item-image {
+            width: 80px;
+            height: 80px;
+            background: var(--medium-gray);
+            border-radius: var(--radius);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+        
+        .item-image img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+        }
+        
+        .item-info {
+            flex: 1;
+        }
+        
+        .item-info h4 {
+            margin-bottom: 0.25rem;
+        }
+        
+        .item-price {
+            font-weight: 600;
+            color: var(--primary-blue);
+        }
+        
+        .item-quantity {
+            color: var(--dark-gray);
+            font-size: 0.9rem;
+        }
+        
+        /* Empty State */
+        .empty-state {
+            text-align: center;
+            padding: 4rem 2rem;
+            color: var(--text-light);
+        }
+        
+        .empty-state i {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: var(--medium-gray);
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--text-dark);
+            color: var(--white);
+            padding: 3rem 0 2rem;
+            margin-top: 3rem;
+        }
+        
+        .footer-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .footer-logo {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--white);
+            margin-bottom: 1rem;
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--medium-gray);
+            font-size: 0.875rem;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header-container {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            .nav-links {
+                gap: 1rem;
+            }
+            
+            table {
+                display: block;
+                overflow-x: auto;
+            }
+            
+            .modal-content {
+                padding: 1rem;
+                margin: 1rem;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .orders-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .stats {
+                flex-wrap: wrap;
+                gap: 1rem;
+            }
+            
+            .control-buttons {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <a href="index.html" class="logo">
+                <i class="fas fa-glasses"></i>
+                Vision Perfect
+            </a>
+            <div class="nav-links">
+                <a href="index.html">
+                    <i class="fas fa-store"></i> Gallery
+                </a>
+                <a href="#" id="admin-login">
+                    <i class="fas fa-user-cog"></i> Admin Login
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Admin Controls -->
+    <div class="container admin-controls" id="admin-controls" style="display: none;">
+        <h3 style="margin-bottom: 1rem;">Admin Controls</h3>
+        <div class="control-buttons">
+            <button class="btn btn-primary" id="add-sample-orders">
+                <i class="fas fa-plus"></i> Add Sample Orders
+            </button>
+            <button class="btn btn-danger" id="clear-all-orders">
+                <i class="fas fa-trash"></i> Clear All Orders
+            </button>
+            <button class="btn btn-secondary" id="export-orders">
+                <i class="fas fa-download"></i> Export to JSON
+            </button>
+            <button class="btn btn-success" id="print-report">
+                <i class="fas fa-print"></i> Print Report
+            </button>
+        </div>
+    </div>
+
+    <!-- Orders Container -->
+    <div class="container">
+        <div class="orders-container">
+            <div class="orders-header">
+                <h1>Order History</h1>
+                <div class="stats">
+                    <div class="stat-item">
+                        <div class="stat-value" id="total-orders">0</div>
+                        <div class="stat-label">Total Orders</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value" id="total-revenue">$0</div>
+                        <div class="stat-label">Total Revenue</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value" id="avg-order">$0</div>
+                        <div class="stat-label">Avg. Order</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Orders Table -->
+            <div id="orders-table-container">
+                <table id="orders-table">
+                    <thead>
+                        <tr>
+                            <th>Order ID</th>
+                            <th>Date</th>
+                            <th>Customer</th>
+                            <th>Items</th>
+                            <th>Total</th>
+                            <th>Status</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="orders-table-body">
+                        <!-- Orders will be loaded here -->
+                    </tbody>
+                </table>
+                
+                <!-- Empty State -->
+                <div class="empty-state" id="empty-state">
+                    <i class="fas fa-clipboard-list"></i>
+                    <h3>No Orders Yet</h3>
+                    <p>Orders will appear here once customers complete their purchases.</p>
+                    <button class="btn btn-primary" id="view-sample-orders" style="margin-top: 1rem;">
+                        <i class="fas fa-eye"></i> View Sample Orders
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Order Details Modal -->
+    <div class="modal" id="order-details-modal">
+        <div class="modal-content">
+            <button class="modal-close" id="modal-close">&times;</button>
+            
+            <div class="modal-header">
+                <h2 id="modal-order-id">Order #VP-2023-001</h2>
+                <div class="status-badge" id="modal-order-status">Processing</div>
+            </div>
+            
+            <div class="order-details-grid">
+                <div class="detail-section">
+                    <h3>Customer Information</h3>
+                    <div class="detail-item">
+                        <span class="detail-label">Name:</span>
+                        <span class="detail-value" id="customer-name">John Doe</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">Email:</span>
+                        <span class="detail-value" id="customer-email">john@example.com</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">Phone:</span>
+                        <span class="detail-value" id="customer-phone">(555) 123-4567</span>
+                    </div>
+                </div>
+                
+                <div class="detail-section">
+                    <h3>Shipping Address</h3>
+                    <div class="detail-item">
+                        <span class="detail-label">Address:</span>
+                        <span class="detail-value" id="shipping-address">123 Main St</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">City:</span>
+                        <span class="detail-value" id="shipping-city">New York</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">ZIP Code:</span>
+                        <span class="detail-value" id="shipping-zip">10001</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">Country:</span>
+                        <span class="detail-value" id="shipping-country">United States</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="detail-section">
+                <h3>Payment Information</h3>
+                <div class="detail-item">
+                    <span class="detail-label">Payment Method:</span>
+                    <span class="detail-value" id="payment-method">Credit Card</span>
+                </div>
+                <div class="detail-item">
+                    <span class="detail-label">Card Type:</span>
+                    <span class="detail-value" id="card-type">Visa</span>
+                </div>
+                <div class="detail-item">
+                    <span class="detail-label">Last 4 Digits:</span>
+                    <span class="detail-value" id="card-last4">•••• 4242</span>
+                </div>
+            </div>
+            
+            <div class="order-items">
+                <h3>Order Items</h3>
+                <div id="modal-order-items">
+                    <!-- Order items will be loaded here -->
+                </div>
+            </div>
+            
+            <div class="detail-section">
+                <h3>Order Summary</h3>
+                <div class="detail-item">
+                    <span class="detail-label">Subtotal:</span>
+                    <span class="detail-value" id="modal-subtotal">$0.00</span>
+                </div>
+                <div class="detail-item">
+                    <span class="detail-label">Shipping:</span>
+                    <span class="detail-value" id="modal-shipping">$0.00</span>
+                </div>
+                <div class="detail-item">
+                    <span class="detail-label">Tax:</span>
+                    <span class="detail-value" id="modal-tax">$0.00</span>
+                </div>
+                <div class="detail-item" style="border-top: 2px solid var(--medium-gray); padding-top: 1rem; margin-top: 0.5rem;">
+                    <span class="detail-label" style="font-weight: 700; font-size: 1.1rem;">Total:</span>
+                    <span class="detail-value" style="font-weight: 700; font-size: 1.1rem; color: var(--primary-blue);" id="modal-total">$0.00</span>
+                </div>
+            </div>
+            
+            <div style="margin-top: 2rem; display: flex; gap: 1rem;">
+                <button class="btn btn-primary" id="update-status-btn">
+                    <i class="fas fa-sync"></i> Update Status
+                </button>
+                <button class="btn btn-secondary" onclick="window.print()">
+                    <i class="fas fa-print"></i> Print Invoice
+                </button>
+                <button class="btn btn-danger" id="delete-order-btn">
+                    <i class="fas fa-trash"></i> Delete Order
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-container">
+                <div class="footer-about">
+                    <div class="footer-logo">Vision Perfect</div>
+                    <p>Order management system for Vision Perfect eyewear gallery.</p>
+                </div>
+                
+                <div class="footer-links">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html">Gallery</a></li>
+                        <li><a href="checkout.html">Checkout Demo</a></li>
+                        <li><a href="#">Sales Reports</a></li>
+                        <li><a href="#">Customer Support</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-links">
+                    <h4>System Info</h4>
+                    <ul>
+                        <li><i class="fas fa-database"></i> Orders in Storage: <span id="storage-count">0</span></li>
+                        <li><i class="fas fa-clock"></i> Last Updated: <span id="last-updated">Never</span></li>
+                        <li><i class="fas fa-code"></i> Version: 1.0.0</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2023 Vision Perfect. This is a demo order management system.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Sample orders data (for demo purposes)
+        const sampleOrders = [
+            {
+                id: 'VP-2023-001',
+                date: '2023-10-15T14:30:00',
+                customer: {
+                    name: 'John Smith',
+                    email: 'john.smith@email.com',
+                    phone: '(555) 123-4567'
+                },
+                shipping: {
+                    address: '123 Main Street',
+                    city: 'New York',
+                    zip: '10001',
+                    country: 'United States'
+                },
+                payment: {
+                    method: 'Credit Card',
+                    cardType: 'Visa',
+                    last4: '4242'
+                },
+                items: [
+                    { name: '顺仕眼镜 Eyebrow Frame', price: 189.99, quantity: 1, image: 'https://images.unsplash.com/photo-1511499767150-a48a237f0083?ixlib=rb-1.2.1&auto=format&fit=crop&w=150&q=80' },
+                    { name: 'Classic Aviator Gold', price: 129.99, quantity: 1, image: 'https://images.unsplash.com/photo-1511499767150-a48a237f0083?ixlib=rb-1.2.1&auto=format&fit=crop&w=150&q=80' }
+                ],
+                subtotal: 319.98,
+                shipping: 9.99,
+                tax: 25.60,
+                total: 355.57,
+                status: 'delivered'
+            },
+            {
+                id: 'VP-2023-002',
+                date: '2023-10-18T10:15:00',
+                customer: {
+                    name: 'Emma Johnson',
+                    email: 'emma.j@email.com',
+                    phone: '(555) 987-6543'
+                },
+                shipping: {
+                    address: '456 Oak Avenue',
+                    city: 'Los Angeles',
+                    zip: '90001',
+                    country: 'United States'
+                },
+                payment: {
+                    method: 'PayPal',
+                    cardType: null,
+                    last4: null
+                },
+                items: [
+                    { name: 'GUSHI Transparent Frame', price: 159.99, quantity: 2, image: 'https://images.unsplash.com/photo-1581094794329-c8112a89af12?ixlib=rb-1.2.1&auto=format&fit=crop&w=150&q=80' }
+                ],
+                subtotal: 319.98,
+                shipping: 9.99,
+                tax: 26.40,
+                total: 356.37,
+                status: 'shipped'
+            },
+            {
+                id: 'VP-2023-003',
+                date: '2023-10-20T16:45:00',
+                customer: {
+                    name: 'Robert Chen',
+                    email: 'robert.chen@email.com',
+                    phone: '(555) 456-7890'
+                },
+                shipping: {
+                    address: '789 Pine Road',
+                    city: 'Chicago',
+                    zip: '60601',
+                    country: 'United States'
+                },
+                payment: {
+                    method: 'Credit Card',
+                    cardType: 'MasterCard',
+                    last4: '8888'
+                },
+                items: [
+                    { name: 'Designer Oversized', price: 249.99, quantity: 1, image: 'https://images.unsplash.com/photo-1572635196237-14b3f281503f?ixlib=rb-1.2.1&auto=format&fit=crop&w=150&q=80' },
+                    { name: 'Minimalist Rimless', price: 199.99, quantity: 1, image: 'https://images.unsplash.com/photo-1556306535-0f09a537f0a3?ixlib=rb-1.2.1&auto=format&fit=crop&w=150&q=80' }
+                ],
+                subtotal: 449.98,
+                shipping: 9.99,
+                tax: 36.80,
+                total: 496.77,
+                status: 'processing'
+            }
+        ];
+
+        let orders = [];
+        let currentOrderId = null;
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', () => {
+            loadOrders();
+            setupEventListeners();
+            updateStats();
+            updateStorageInfo();
+        });
+
+        // Load orders from localStorage
+        function loadOrders() {
+            const savedOrders = localStorage.getItem('visionPerfectOrders');
+            
+            if (savedOrders) {
+                orders = JSON.parse(savedOrders);
+                console.log('Loaded orders:', orders);
+            }
+            
+            displayOrders();
+        }
+
+        // Display orders in table
+        function displayOrders() {
+            const tbody = document.getElementById('orders-table-body');
+            const emptyState = document.getElementById('empty-state');
+            
+            if (orders.length === 0) {
+                tbody.innerHTML = '';
+                emptyState.style.display = 'block';
+                return;
+            }
+            
+            emptyState.style.display = 'none';
+            
+            // Sort orders by date (newest first)
+            const sortedOrders = [...orders].sort((a, b) => 
+                new Date(b.date || b.timestamp) - new Date(a.date || a.timestamp)
+            );
+            
+            tbody.innerHTML = '';
+            
+            sortedOrders.forEach(order => {
+                const orderDate = order.date ? new Date(order.date) : new Date(order.timestamp || Date.now());
+                const formattedDate = orderDate.toLocaleDateString('en-US', {
+                    year: 'numeric',
+                    month: 'short',
+                    day: 'numeric'
+                });
+                
+                const formattedTime = orderDate.toLocaleTimeString('en-US', {
+                    hour: '2-digit',
+                    minute: '2-digit'
+                });
+                
+                // Get customer name (fallback to email or "Unknown")
+                let customerName = 'Unknown';
+                if (order.customer && order.customer.name) {
+                    customerName = order.customer.name;
+                } else if (order.customerEmail) {
+                    customerName = order.customerEmail.split('@')[0];
+                }
+                
+                // Calculate total items
+                const totalItems = order.items ? 
+                    order.items.reduce((sum, item) => sum + (item.quantity || 1), 0) : 
+                    (order.totalItems || 0);
+                
+                // Get total amount
+                const totalAmount = order.total || 
+                    (order.subtotal + order.shipping + order.tax) || 
+                    0;
+                
+                // Determine status
+                let status = order.status || 'processing';
+                let statusText = status.charAt(0).toUpperCase() + status.slice(1);
+                let statusClass = 'status-' + status;
+                
+                // Build table row
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td><strong>${order.id || 'N/A'}</strong></td>
+                    <td>${formattedDate}<br><small>${formattedTime}</small></td>
+                    <td>${customerName}</td>
+                    <td>${totalItems} item${totalItems !== 1 ? 's' : ''}</td>
+                    <td><strong>$${totalAmount.toFixed(2)}</strong></td>
+                    <td><span class="status-badge ${statusClass}">${statusText}</span></td>
+                    <td>
+                        <button class="btn btn-secondary btn-small view-order" data-id="${order.id || order.orderId}" style="padding: 0.25rem 0.5rem; font-size: 0.8rem;">
+                            <i class="fas fa-eye"></i> View
+                        </button>
+                        <button class="btn btn-primary btn-small update-status" data-id="${order.id || order.orderId}" style="padding: 0.25rem 0.5rem; font-size: 0.8rem; margin-left: 0.25rem;">
+                            <i class="fas fa-edit"></i> Edit
+                        </button>
+                    </td>
+                `;
+                
+                tbody.appendChild(row);
+            });
+            
+            // Add event listeners to view buttons
+            document.querySelectorAll('.view-order').forEach(button => {
+                button.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    const orderId = button.dataset.id;
+                    viewOrderDetails(orderId);
+                });
+            });
+            
+            // Add event listeners to edit buttons
+            document.querySelectorAll('.update-status').forEach(button => {
+                button.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    const orderId = button.dataset.id;
+                    updateOrderStatus(orderId);
+                });
+            });
+        }
+
+        // View order details
+        function viewOrderDetails(orderId) {
+            const order = orders.find(o => o.id === orderId || o.orderId === orderId);
+            
+            if (!order) {
+                alert('Order not found!');
+                return;
+            }
+            
+            currentOrderId = orderId;
+            
+            // Update modal content
+            document.getElementById('modal-order-id').textContent = `Order #${order.id || order.orderId}`;
+            
+            // Customer info
+            if (order.customer) {
+                document.getElementById('customer-name').textContent = order.customer.name || 'N/A';
+                document.getElementById('customer-email').textContent = order.customer.email || order.customerEmail || 'N/A';
+                document.getElementById('customer-phone').textContent = order.customer.phone || 'N/A';
+            } else {
+                document.getElementById('customer-name').textContent = 'N/A';
+                document.getElementById('customer-email').textContent = order.customerEmail || 'N/A';
+                document.getElementById('customer-phone').textContent = 'N/A';
+            }
+            
+            // Shipping info
+            if (order.shipping) {
+                document.getElementById('shipping-address').textContent = order.shipping.address || 'N/A';
+                document.getElementById('shipping-city').textContent = order.shipping.city || 'N/A';
+                document.getElementById('shipping-zip').textContent = order.shipping.zip || 'N/A';
+                document.getElementById('shipping-country').textContent = order.shipping.country || 'N/A';
+            } else {
+                // Try to get from form data if available
+                const shippingAddress = order.shippingAddress || 'N/A';
+                const shippingCity = order.shippingCity || 'N/A';
+                const shippingZip = order.shippingZip || 'N/A';
+                const shippingCountry = order.shippingCountry || 'N/A';
+                
+                document.getElementById('shipping-address').textContent = shippingAddress;
+                document.getElementById('shipping-city').textContent = shippingCity;
+                document.getElementById('shipping-zip').textContent = shippingZip;
+                document.getElementById('shipping-country').textContent = shippingCountry;
+            }
+            
+            // Payment info
+            if (order.payment) {
+                document.getElementById('payment-method').textContent = order.payment.method || 'N/A';
+                document.getElementById('card-type').textContent = order.payment.cardType || 'N/A';
+                document.getElementById('card-last4').textContent = order.payment.last4 ? `•••• ${order.payment.last4}` : 'N/A';
+            } else {
+                document.getElementById('payment-method').textContent = 'Credit Card';
+                document.getElementById('card-type').textContent = 'N/A';
+                document.getElementById('card-last4').textContent = 'N/A';
+            }
+            
+            // Order items
+            const itemsContainer = document.getElementById('modal-order-items');
+            itemsContainer.innerHTML = '';
+            
+            if (order.items && order.items.length > 0) {
+                order.items.forEach(item => {
+                    const itemElement = document.createElement('div');
+                    itemElement.className = 'order-item-detail';
+                    itemElement.innerHTML = `
+                        <div class="item-image">
+                            <img src="${item.image || 'https://images.unsplash.com/photo-1511499767150-a48a237f0083?ixlib=rb-1.2.1&auto=format&fit=crop&w=150&q=80'}" alt="${item.name}">
+                        </div>
+                        <div class="item-info">
+                            <h4>${item.name}</h4>
+                            <div class="item-price">$${item.price.toFixed(2)} each</div>
+                            <div class="item-quantity">Quantity: ${item.quantity || 1}</div>
+                        </div>
+                        <div style="font-weight: 700; color: var(--primary-blue);">
+                            $${((item.price || 0) * (item.quantity || 1)).toFixed(2)}
+                        </div>
+                    `;
+                    itemsContainer.appendChild(itemElement);
+                });
+            } else {
+                itemsContainer.innerHTML = '<p>No items found for this order.</p>';
+            }
+            
+            // Order summary
+            const subtotal = order.subtotal || 0;
+            const shipping = order.shipping || 0;
+            const tax = order.tax || 0;
+            const total = order.total || subtotal + shipping + tax;
+            
+            document.getElementById('modal-subtotal').textContent = `$${subtotal.toFixed(2)}`;
+            document.getElementById('modal-shipping').textContent = `$${shipping.toFixed(2)}`;
+            document.getElementById('modal-tax').textContent = `$${tax.toFixed(2)}`;
+            document.getElementById('modal-total').textContent = `$${total.toFixed(2)}`;
+            
+            // Update status badge
+            const status = order.status || 'processing';
+            const statusText = status.charAt(0).toUpperCase() + status.slice(1);
+            const statusBadge = document.getElementById('modal-order-status');
+            statusBadge.textContent = statusText;
+            statusBadge.className = `status-badge status-${status}`;
+            
+            // Show modal
+            document.getElementById('order-details-modal').classList.add('active');
+        }
+
+        // Update order status
+        function updateOrderStatus(orderId) {
+            const order = orders.find(o => o.id === orderId || o.orderId === orderId);
+            
+            if (!order) {
+                alert('Order not found!');
+                return;
+            }
+            
+            const currentStatus = order.status || 'processing';
+            const newStatus = prompt(`Current status: ${currentStatus}\n\nEnter new status (processing, shipped, delivered, cancelled):`, currentStatus);
+            
+            if (newStatus && ['processing', 'shipped', 'delivered', 'cancelled'].includes(newStatus.toLowerCase())) {
+                order.status = newStatus.toLowerCase();
+                saveOrders();
+                displayOrders();
+                updateStats();
+                
+                if (orderId === currentOrderId) {
+                    // Update modal if it's open
+                    const statusBadge = document.getElementById('modal-order-status');
+                    statusBadge.textContent = newStatus.charAt(0).toUpperCase() + newStatus.slice(1);
+                    statusBadge.className = `status-badge status-${newStatus.toLowerCase()}`;
+                }
+                
+                alert(`Order status updated to: ${newStatus}`);
+            } else if (newStatus) {
+                alert('Invalid status. Please use: processing, shipped, delivered, or cancelled');
+            }
+        }
+
+        // Update statistics
+        function updateStats() {
+            const totalOrders = orders.length;
+            const totalRevenue = orders.reduce((sum, order) => {
+                return sum + (order.total || 0);
+            }, 0);
+            
+            const avgOrder = totalOrders > 0 ? totalRevenue / totalOrders : 0;
+            
+            document.getElementById('total-orders').textContent = totalOrders;
+            document.getElementById('total-revenue').textContent = `$${totalRevenue.toFixed(2)}`;
+            document.getElementById('avg-order').textContent = `$${avgOrder.toFixed(2)}`;
+        }
+
+        // Update storage info
+        function updateStorageInfo() {
+            document.getElementById('storage-count').textContent = orders.length;
+            document.getElementById('last-updated').textContent = new Date().toLocaleTimeString();
+        }
+
+        // Save orders to localStorage
+        function saveOrders() {
+            localStorage.setItem('visionPerfectOrders', JSON.stringify(orders));
+            updateStorageInfo();
+        }
+
+        // Setup event listeners
+        function setupEventListeners() {
+            // Admin login
+            document.getElementById('admin-login').addEventListener('click', (e) => {
+                e.preventDefault();
+                const password = prompt('Enter admin password:');
+                if (password === 'admin123') { // Demo password
+                    document.getElementById('admin-controls').style.display = 'block';
+                    alert('Admin access granted!');
+                } else if (password) {
+                    alert('Incorrect password!');
+                }
+            });
+
+            // View sample orders
+            document.getElementById('view-sample-orders').addEventListener('click', () => {
+                orders = [...sampleOrders, ...orders];
+                saveOrders();
+                displayOrders();
+                updateStats();
+            });
+
+            // Add sample orders button
+            document.getElementById('add-sample-orders').addEventListener('click', () => {
+                orders = [...sampleOrders, ...orders];
+                saveOrders();
+                displayOrders();
+                updateStats();
+                alert('Sample orders added!');
+            });
+
+            // Clear all orders
+            document.getElementById('clear-all-orders').addEventListener('click', () => {
+                if (confirm('Are you sure you want to clear ALL orders? This cannot be undone.')) {
+                    orders = [];
+                    saveOrders();
+                    displayOrders();
+                    updateStats();
+                    alert('All orders cleared!');
+                }
+            });
+
+            // Export orders
+            document.getElementById('export-orders').addEventListener('click', () => {
+                const dataStr = JSON.stringify(orders, null, 2);
+                const dataBlob = new Blob([dataStr], {type: 'application/json'});
+                const url = URL.createObjectURL(dataBlob);
+                
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = `vision-perfect-orders-${new Date().toISOString().split('T')[0]}.json`;
+                document.body.appendChild(a);
+                a.click();
+                document.body.removeChild(a);
+                URL.revokeObjectURL(url);
+                
+                alert('Orders exported as JSON file!');
+            });
+
+            // Print report
+            document.getElementById('print-report').addEventListener('click', () => {
+                window.print();
+            });
+
+            // Close modal
+            document.getElementById('modal-close').addEventListener('click', () => {
+                document.getElementById('order-details-modal').classList.remove('active');
+                currentOrderId = null;
+            });
+
+            // Update status from modal
+            document.getElementById('update-status-btn').addEventListener('click', () => {
+                if (currentOrderId) {
+                    updateOrderStatus(currentOrderId);
+                }
+            });
+
+            // Delete order from modal
+            document.getElementById('delete-order-btn').addEventListener('click', () => {
+                if (currentOrderId && confirm('Are you sure you want to delete this order?')) {
+                    orders = orders.filter(o => o.id !== currentOrderId && o.orderId !== currentOrderId);
+                    saveOrders();
+                    displayOrders();
+                    updateStats();
+                    document.getElementById('order-details-modal').classList.remove('active');
+                    currentOrderId = null;
+                    alert('Order deleted!');
+                }
+            });
+
+            // Close modal when clicking outside
+            document.getElementById('order-details-modal').addEventListener('click', (e) => {
+                if (e.target.id === 'order-details-modal') {
+                    document.getElementById('order-details-modal').classList.remove('active');
+                    currentOrderId = null;
+                }
+            });
+        }
+
+        // Keyboard shortcuts
+        document.addEventListener('keydown', (e) => {
+            // Ctrl+S to save
+            if (e.ctrlKey && e.key === 's') {
+                e.preventDefault();
+                saveOrders();
+                alert('Orders saved!');
+            }
+            
+            // Esc to close modal
+            if (e.key === 'Escape' && document.getElementById('order-details-modal').classList.contains('active')) {
+                document.getElementById('order-details-modal').classList.remove('active');
+                currentOrderId = null;
+            }
+        });
+    </script>
+</body>
+</html>
