@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vision Perfect - See the World Clearly</title>
+    <title>Vision Perfect - Eyewear Gallery</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
@@ -78,7 +78,7 @@
         
         .container {
             width: 100%;
-            max-width: 1200px;
+            max-width: 1400px;
             margin: 0 auto;
             padding: 0 1.5rem;
         }
@@ -117,35 +117,16 @@
             font-size: 0.875rem;
         }
         
-        .section-title {
-            text-align: center;
-            margin-bottom: 3rem;
-        }
-        
-        .section-title h2 {
-            position: relative;
-            display: inline-block;
-            padding-bottom: 0.5rem;
-        }
-        
-        .section-title h2::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 80px;
-            height: 3px;
-            background-color: var(--primary-blue);
-        }
-        
         /* Header and Navigation */
         header {
-            background-color: var(--white);
-            box-shadow: var(--shadow);
-            position: sticky;
+            background-color: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            position: fixed;
             top: 0;
+            width: 100%;
             z-index: 1000;
+            transition: var(--transition);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
         }
         
         .header-container {
@@ -232,24 +213,36 @@
             cursor: pointer;
         }
         
-        /* Hero Section */
-        .hero {
-            background-color: var(--light-blue);
-            padding: 5rem 1.5rem;
+        /* Gallery Hero */
+        .gallery-hero {
+            height: 70vh;
+            background: linear-gradient(135deg, var(--light-blue) 0%, rgba(255, 255, 255, 0.9) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
             text-align: center;
+            padding-top: 80px;
+            position: relative;
+            overflow: hidden;
         }
         
         .hero-content {
             max-width: 800px;
             margin: 0 auto;
+            z-index: 2;
+            position: relative;
         }
         
-        .hero h1 {
+        .hero-content h1 {
+            font-size: 3rem;
             margin-bottom: 1.5rem;
-            color: var(--text-dark);
+            background: linear-gradient(135deg, var(--primary-blue) 0%, var(--primary-blue-dark) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
         
-        .hero p {
+        .hero-content p {
             font-size: 1.25rem;
             margin-bottom: 2.5rem;
             color: var(--text-light);
@@ -258,95 +251,104 @@
             margin-right: auto;
         }
         
-        .hero-buttons {
+        /* Gallery Filters */
+        .gallery-filters {
+            padding: 1.5rem 1.5rem;
+            background-color: var(--white);
+            position: sticky;
+            top: 70px;
+            z-index: 900;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        }
+        
+        .filter-tags {
             display: flex;
             justify-content: center;
-            gap: 1rem;
-        }
-        
-        /* Products Section */
-        .products-section {
-            padding: 5rem 1.5rem;
-            background-color: var(--white);
-        }
-        
-        .products-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 2rem;
             flex-wrap: wrap;
-            gap: 1rem;
+            gap: 0.75rem;
         }
         
-        .filters {
-            display: flex;
-            gap: 1rem;
-            flex-wrap: wrap;
-        }
-        
-        .filter-group {
-            display: flex;
-            flex-direction: column;
-            gap: 0.5rem;
-        }
-        
-        .filter-group label {
-            font-size: 0.875rem;
+        .filter-tag {
+            padding: 0.5rem 1.25rem;
+            background-color: var(--light-gray);
+            border-radius: 50px;
             font-weight: 500;
-            color: var(--text-light);
+            cursor: pointer;
+            transition: var(--transition);
+            border: 2px solid transparent;
+            font-size: 0.9rem;
         }
         
-        .filter-select {
-            padding: 0.5rem 1rem;
-            border: 1px solid var(--medium-gray);
-            border-radius: var(--radius);
+        .filter-tag:hover {
+            background-color: var(--medium-gray);
+        }
+        
+        .filter-tag.active {
+            background-color: var(--primary-blue);
+            color: var(--white);
+        }
+        
+        /* Gallery Grid - 4 pictures per row */
+        .gallery-section {
+            padding: 3rem 1.5rem;
             background-color: var(--white);
-            font-family: 'Montserrat', sans-serif;
-            min-width: 150px;
         }
         
-        .products-grid {
+        .gallery-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 2rem;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.5rem;
             margin-bottom: 3rem;
         }
         
-        .product-card {
-            background-color: var(--white);
+        .gallery-item {
+            position: relative;
             border-radius: var(--radius);
             overflow: hidden;
-            box-shadow: var(--shadow);
             transition: var(--transition);
-            position: relative;
-        }
-        
-        .product-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
-        }
-        
-        .product-image {
-            height: 200px;
+            cursor: pointer;
+            height: 280px;
             background-color: var(--light-gray);
             display: flex;
             align-items: center;
             justify-content: center;
-            overflow: hidden;
-            position: relative;
         }
         
-        .product-image img {
-            max-width: 90%;
-            max-height: 90%;
-            object-fit: contain;
+        .gallery-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
         }
         
-        .wishlist-btn {
+        .gallery-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+        
+        .gallery-item:hover .gallery-image {
+            transform: scale(1.05);
+        }
+        
+        /* Action buttons on gallery items */
+        .gallery-actions {
             position: absolute;
             top: 1rem;
             right: 1rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            opacity: 0;
+            transform: translateX(10px);
+            transition: var(--transition);
+        }
+        
+        .gallery-item:hover .gallery-actions {
+            opacity: 1;
+            transform: translateX(0);
+        }
+        
+        .action-btn {
             width: 36px;
             height: 36px;
             border-radius: 50%;
@@ -354,133 +356,219 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1rem;
+            font-size: 0.9rem;
             box-shadow: var(--shadow);
             transition: var(--transition);
         }
         
-        .wishlist-btn:hover, .wishlist-btn.active {
+        .action-btn:hover {
+            background-color: var(--primary-blue);
+            color: var(--white);
+            transform: scale(1.1);
+        }
+        
+        .action-btn.favorited {
             background-color: var(--primary-blue);
             color: var(--white);
         }
         
-        .product-info {
+        /* Gallery overlay with price, brand, year */
+        .gallery-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
+            color: white;
             padding: 1.5rem;
+            transform: translateY(20px);
+            opacity: 0;
+            transition: var(--transition);
         }
         
-        .product-name {
-            font-size: 1.125rem;
+        .gallery-item:hover .gallery-overlay {
+            transform: translateY(0);
+            opacity: 1;
+        }
+        
+        .frame-name {
+            font-size: 1.1rem;
             font-weight: 600;
             margin-bottom: 0.5rem;
         }
         
-        .product-price {
-            font-size: 1.25rem;
-            font-weight: 700;
-            color: var(--primary-blue);
-            margin-bottom: 0.75rem;
-        }
-        
-        .product-details {
+        .frame-details {
             display: flex;
             justify-content: space-between;
-            margin-bottom: 1rem;
-            font-size: 0.875rem;
-            color: var(--dark-gray);
+            font-size: 0.85rem;
+            opacity: 0.9;
+            margin-bottom: 0.25rem;
         }
         
-        .product-colors {
-            display: flex;
-            gap: 0.5rem;
-            margin-bottom: 1.5rem;
+        .frame-price {
+            font-size: 1rem;
+            font-weight: 700;
+            color: #4ade80;
+            margin-top: 0.25rem;
         }
         
-        .color-option {
-            width: 20px;
-            height: 20px;
-            border-radius: 50%;
-            cursor: pointer;
-            border: 1px solid var(--medium-gray);
-        }
-        
-        .product-actions {
-            display: flex;
-            gap: 0.5rem;
-        }
-        
-        .product-actions button {
-            flex: 1;
-        }
-        
-        /* Featured Sections */
-        .featured-sections {
-            padding: 5rem 1.5rem;
-            background-color: var(--light-gray);
-        }
-        
-        .featured-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin-top: 3rem;
-        }
-        
-        .featured-category {
-            background-color: var(--white);
-            border-radius: var(--radius);
+        /* Fullscreen Viewer */
+        .viewer-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.95);
+            z-index: 2000;
             padding: 2rem;
-            text-align: center;
-            box-shadow: var(--shadow);
+        }
+        
+        .viewer-modal.active {
+            display: block;
+            animation: fadeIn 0.3s ease;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        .viewer-close {
+            position: absolute;
+            top: 2rem;
+            right: 2rem;
+            background: none;
+            color: white;
+            font-size: 2rem;
+            cursor: pointer;
+            z-index: 10;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
             transition: var(--transition);
         }
         
-        .featured-category:hover {
-            transform: translateY(-5px);
+        .viewer-close:hover {
+            background-color: rgba(255, 255, 255, 0.1);
         }
         
-        .category-icon {
-            font-size: 2.5rem;
-            color: var(--primary-blue);
+        .viewer-container {
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .viewer-main-image {
+            max-width: 80%;
+            max-height: 60vh;
+            object-fit: contain;
+            margin-bottom: 1.5rem;
+            border-radius: var(--radius);
+        }
+        
+        .viewer-info {
+            color: white;
+            text-align: center;
+            max-width: 600px;
+        }
+        
+        .viewer-info h2 {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .viewer-price {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #4ade80;
             margin-bottom: 1rem;
         }
         
-        .carousel-container {
-            position: relative;
-            overflow: hidden;
-            margin-top: 2rem;
-        }
-        
-        .carousel {
-            display: flex;
-            transition: transform 0.5s ease;
-        }
-        
-        .carousel-item {
-            min-width: 100%;
-            padding: 1rem;
-        }
-        
-        .carousel-nav {
+        .viewer-details {
             display: flex;
             justify-content: center;
+            gap: 2rem;
+            margin-bottom: 1.5rem;
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+        
+        .viewer-actions {
+            display: flex;
             gap: 1rem;
+            justify-content: center;
             margin-top: 1.5rem;
         }
         
-        .carousel-dot {
-            width: 10px;
-            height: 10px;
-            border-radius: 50%;
-            background-color: var(--medium-gray);
+        .viewer-thumbnails {
+            display: flex;
+            gap: 0.75rem;
+            margin-top: 1.5rem;
+            overflow-x: auto;
+            padding: 0.5rem 0;
+            max-width: 80%;
+        }
+        
+        .viewer-thumbnail {
+            min-width: 80px;
+            height: 80px;
+            border-radius: var(--radius);
+            overflow: hidden;
             cursor: pointer;
+            opacity: 0.6;
             transition: var(--transition);
         }
         
-        .carousel-dot.active {
-            background-color: var(--primary-blue);
+        .viewer-thumbnail:hover,
+        .viewer-thumbnail.active {
+            opacity: 1;
+            transform: scale(1.05);
         }
         
-        /* Shopping Cart Modal */
+        .viewer-thumbnail img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .viewer-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.25rem;
+            cursor: pointer;
+            transition: var(--transition);
+            border: none;
+        }
+        
+        .viewer-nav:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+        
+        .viewer-prev {
+            left: 2rem;
+        }
+        
+        .viewer-next {
+            right: 2rem;
+        }
+        
+        /* Cart Modal */
         .cart-modal {
             display: none;
             position: fixed;
@@ -540,6 +628,13 @@
             display: flex;
             align-items: center;
             justify-content: center;
+            overflow: hidden;
+        }
+        
+        .cart-item-img img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
         }
         
         .cart-item-info {
@@ -549,11 +644,13 @@
         .cart-item-name {
             font-weight: 600;
             margin-bottom: 0.25rem;
+            font-size: 0.95rem;
         }
         
         .cart-item-price {
             color: var(--primary-blue);
             font-weight: 600;
+            font-size: 0.95rem;
         }
         
         .cart-item-actions {
@@ -605,209 +702,7 @@
             gap: 0.75rem;
         }
         
-        /* Quick View Modal */
-        .quickview-modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.8);
-            z-index: 1200;
-            overflow-y: auto;
-            padding: 2rem 1rem;
-        }
-        
-        .quickview-modal.active {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        
-        .quickview-container {
-            background-color: var(--white);
-            border-radius: var(--radius);
-            max-width: 1000px;
-            width: 90%;
-            max-height: 90vh;
-            overflow-y: auto;
-            position: relative;
-            animation: slideUp 0.3s ease;
-        }
-        
-        @keyframes slideUp {
-            from {
-                opacity: 0;
-                transform: translateY(50px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-        
-        .quickview-close {
-            position: absolute;
-            top: 1rem;
-            right: 1rem;
-            background-color: var(--white);
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.5rem;
-            cursor: pointer;
-            z-index: 10;
-            box-shadow: var(--shadow);
-        }
-        
-        .quickview-content {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 2rem;
-            padding: 2rem;
-        }
-        
-        .quickview-images {
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
-        }
-        
-        .quickview-main-image {
-            width: 100%;
-            height: 300px;
-            background-color: var(--light-gray);
-            border-radius: var(--radius);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            overflow: hidden;
-        }
-        
-        .quickview-main-image img {
-            max-width: 90%;
-            max-height: 90%;
-            object-fit: contain;
-        }
-        
-        .quickview-thumbnails {
-            display: flex;
-            gap: 1rem;
-            overflow-x: auto;
-            padding-bottom: 0.5rem;
-        }
-        
-        .quickview-thumbnail {
-            min-width: 80px;
-            height: 80px;
-            background-color: var(--light-gray);
-            border-radius: var(--radius);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            border: 2px solid transparent;
-            transition: var(--transition);
-            overflow: hidden;
-        }
-        
-        .quickview-thumbnail img {
-            max-width: 90%;
-            max-height: 90%;
-            object-fit: contain;
-        }
-        
-        .quickview-thumbnail.active {
-            border-color: var(--primary-blue);
-        }
-        
-        .quickview-details {
-            display: flex;
-            flex-direction: column;
-        }
-        
-        .quickview-name {
-            font-size: 1.75rem;
-            margin-bottom: 0.5rem;
-        }
-        
-        .quickview-price {
-            font-size: 1.5rem;
-            color: var(--primary-blue);
-            font-weight: 700;
-            margin-bottom: 1rem;
-        }
-        
-        .quickview-original-price {
-            font-size: 1rem;
-            color: var(--dark-gray);
-            text-decoration: line-through;
-            margin-left: 0.5rem;
-        }
-        
-        .quickview-description {
-            margin-bottom: 1.5rem;
-            line-height: 1.6;
-        }
-        
-        .quickview-specs {
-            margin-bottom: 1.5rem;
-        }
-        
-        .quickview-specs ul {
-            list-style-type: none;
-        }
-        
-        .quickview-specs li {
-            margin-bottom: 0.5rem;
-            display: flex;
-            align-items: center;
-        }
-        
-        .quickview-specs i {
-            color: var(--primary-blue);
-            margin-right: 0.5rem;
-            width: 20px;
-        }
-        
-        .quickview-colors {
-            margin-bottom: 1.5rem;
-        }
-        
-        .quickview-colors h4 {
-            margin-bottom: 0.75rem;
-            font-size: 1rem;
-        }
-        
-        .color-options {
-            display: flex;
-            gap: 0.75rem;
-        }
-        
-        .color-option-large {
-            width: 32px;
-            height: 32px;
-            border-radius: 50%;
-            cursor: pointer;
-            border: 2px solid var(--medium-gray);
-            transition: var(--transition);
-        }
-        
-        .color-option-large.active {
-            border-color: var(--primary-blue);
-            transform: scale(1.1);
-        }
-        
-        .quickview-actions {
-            display: flex;
-            gap: 1rem;
-            margin-top: auto;
-        }
-        
+        /* Overlay */
         .overlay {
             display: none;
             position: fixed;
@@ -821,30 +716,6 @@
         
         .overlay.active {
             display: block;
-        }
-        
-        /* Try On Feature */
-        .try-on {
-            padding: 3rem 1.5rem;
-            background-color: var(--white);
-            text-align: center;
-        }
-        
-        .try-on-container {
-            max-width: 800px;
-            margin: 0 auto;
-            background-color: var(--light-blue);
-            border-radius: var(--radius);
-            padding: 3rem;
-            box-shadow: var(--shadow);
-        }
-        
-        .try-on h2 {
-            margin-bottom: 1rem;
-        }
-        
-        .try-on p {
-            margin-bottom: 2rem;
         }
         
         /* Footer */
@@ -896,30 +767,31 @@
         }
         
         /* Responsive Design */
+        @media (max-width: 1200px) {
+            .gallery-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+        
         @media (max-width: 992px) {
             h1 {
-                font-size: 2rem;
+                font-size: 2.5rem;
             }
             
             h2 {
                 font-size: 1.75rem;
             }
             
-            .hero {
-                padding: 3rem 1.5rem;
+            .hero-content h1 {
+                font-size: 2.5rem;
             }
             
-            .products-section, .featured-sections {
-                padding: 3rem 1.5rem;
+            .gallery-grid {
+                grid-template-columns: repeat(2, 1fr);
             }
             
-            .quickview-content {
-                grid-template-columns: 1fr;
-                gap: 1.5rem;
-            }
-            
-            .quickview-main-image {
-                height: 250px;
+            .viewer-main-image {
+                max-width: 90%;
             }
         }
         
@@ -958,58 +830,93 @@
                 display: block;
             }
             
-            .hero-buttons {
-                flex-direction: column;
-                align-items: center;
+            .gallery-hero {
+                height: 60vh;
             }
             
-            .products-header {
-                flex-direction: column;
-                align-items: flex-start;
+            .gallery-filters {
+                top: 70px;
             }
             
-            .filters {
-                width: 100%;
+            .gallery-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1rem;
             }
             
-            .filter-select {
-                min-width: 120px;
+            .gallery-item {
+                height: 220px;
+            }
+            
+            .viewer-nav {
+                width: 40px;
+                height: 40px;
+                font-size: 1rem;
+            }
+            
+            .viewer-prev {
+                left: 1rem;
+            }
+            
+            .viewer-next {
+                right: 1rem;
+            }
+            
+            .viewer-info h2 {
+                font-size: 1.5rem;
             }
             
             .cart-modal {
                 max-width: 100%;
             }
-            
-            .quickview-container {
-                width: 95%;
-                max-height: 95vh;
-            }
-            
-            .quickview-actions {
-                flex-direction: column;
-            }
         }
         
         @media (max-width: 576px) {
-            .products-grid {
+            .gallery-grid {
                 grid-template-columns: 1fr;
             }
             
-            .featured-container {
-                grid-template-columns: 1fr;
+            .gallery-item {
+                height: 250px;
             }
             
-            .filter-group {
-                width: 100%;
+            .hero-content h1 {
+                font-size: 2rem;
             }
             
-            .filter-select {
-                width: 100%;
+            .viewer-main-image {
+                max-width: 95%;
             }
             
-            .quickview-content {
-                padding: 1.5rem;
+            .viewer-thumbnails {
+                max-width: 95%;
             }
+            
+            .viewer-actions {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+        
+        /* Loading Animation */
+        .loading {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 2rem;
+        }
+        
+        .spinner {
+            width: 40px;
+            height: 40px;
+            border: 4px solid var(--light-gray);
+            border-top: 4px solid var(--primary-blue);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
         }
     </style>
 </head>
@@ -1028,8 +935,8 @@
             
             <nav>
                 <ul>
-                    <li><a href="#home">Home</a></li>
-                    <li><a href="#shop">Shop</a></li>
+                    <li><a href="#gallery">Gallery</a></li>
+                    <li><a href="#collections">Collections</a></li>
                     <li><a href="#brands">Brands</a></li>
                     <li><a href="#about">About</a></li>
                     <li><a href="#contact">Contact</a></li>
@@ -1049,177 +956,82 @@
         </div>
     </header>
 
-    <!-- Hero Section -->
-    <section class="hero" id="home">
+    <!-- Gallery Hero -->
+    <section class="gallery-hero" id="home">
         <div class="container hero-content">
-            <h1>See the World Clearly</h1>
-            <p>Discover our premium collection of eyewear designed for style, comfort, and visual perfection. From classic frames to modern designs, find your perfect match.</p>
-            <div class="hero-buttons">
-                <a href="#shop" class="btn btn-primary">Shop Now</a>
-                <a href="#try-on" class="btn btn-secondary">Virtual Try On</a>
-            </div>
+            <h1>Visual Symphony of Eyewear</h1>
+            <p>Immerse yourself in our curated collection of premium frames. Explore design, craftsmanship, and innovation in every detail.</p>
+            <a href="#gallery" class="btn btn-primary">Explore Gallery</a>
         </div>
     </section>
 
-    <!-- Products Section -->
-    <section class="products-section" id="shop">
+    <!-- Gallery Filters -->
+    <section class="gallery-filters">
         <div class="container">
-            <div class="products-header">
-                <h2>Shop Eyewear</h2>
-                <div class="filters">
-                    <div class="filter-group">
-                        <label for="gender">Gender</label>
-                        <select id="gender" class="filter-select">
-                            <option value="all">All</option>
-                            <option value="men">Men</option>
-                            <option value="women">Women</option>
-                            <option value="kids">Kids</option>
-                        </select>
-                    </div>
-                    <div class="filter-group">
-                        <label for="type">Frame Type</label>
-                        <select id="type" class="filter-select">
-                            <option value="all">All Types</option>
-                            <option value="full">Full Rim</option>
-                            <option value="half">Half Rim</option>
-                            <option value="rimless">Rimless</option>
-                        </select>
-                    </div>
-                    <div class="filter-group">
-                        <label for="sort">Sort By</label>
-                        <select id="sort" class="filter-select">
-                            <option value="default">Default</option>
-                            <option value="price-low">Price: Low to High</option>
-                            <option value="price-high">Price: High to Low</option>
-                            <option value="newest">Newest</option>
-                        </select>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="products-grid" id="products-container">
-                <!-- Products will be generated by JavaScript -->
+            <div class="filter-tags" id="filter-tags">
+                <div class="filter-tag active" data-filter="all">All Frames</div>
+                <div class="filter-tag" data-filter="modern">Modern</div>
+                <div class="filter-tag" data-filter="classic">Classic</div>
+                <div class="filter-tag" data-filter="designer">Designer</div>
+                <div class="filter-tag" data-filter="sports">Sports</div>
+                <div class="filter-tag" data-filter="minimalist">Minimalist</div>
+                <div class="filter-tag" data-filter="luxury">Luxury</div>
+                <div class="filter-tag" data-filter="vintage">Vintage</div>
             </div>
         </div>
     </section>
 
-    <!-- Featured Sections -->
-    <section class="featured-sections">
+    <!-- Gallery Section -->
+    <section class="gallery-section" id="gallery">
         <div class="container">
-            <div class="section-title">
-                <h2>Featured Collections</h2>
-                <p>Explore our curated eyewear collections</p>
+            <h2 class="section-title">Eyewear Gallery</h2>
+            <div class="gallery-grid" id="gallery-grid">
+                <!-- Gallery items will be generated by JavaScript -->
             </div>
-            
-            <div class="featured-container">
-                <div class="featured-category">
-                    <div class="category-icon">
-                        <i class="fas fa-crown"></i>
-                    </div>
-                    <h3>Best Sellers</h3>
-                    <p>Our most popular frames loved by customers worldwide</p>
-                    <a href="#" class="btn btn-primary btn-small">View Collection</a>
-                </div>
-                
-                <div class="featured-category">
-                    <div class="category-icon">
-                        <i class="fas fa-star"></i>
-                    </div>
-                    <h3>New Arrivals</h3>
-                    <p>Fresh styles just added to our collection</p>
-                    <a href="#" class="btn btn-primary btn-small">View New</a>
-                </div>
-                
-                <div class="featured-category">
-                    <div class="category-icon">
-                        <i class="fas fa-sun"></i>
-                    </div>
-                    <h3>Sunglasses</h3>
-                    <p>Protect your eyes in style with our premium sunglasses</p>
-                    <a href="#" class="btn btn-primary btn-small">Shop Sunglasses</a>
-                </div>
-            </div>
-            
-            <!-- Best Sellers Carousel -->
-            <div class="carousel-container">
-                <h3 style="text-align: center; margin-top: 4rem; margin-bottom: 1rem;">Best Sellers</h3>
-                <div class="carousel" id="carousel">
-                    <!-- Carousel items will be generated by JavaScript -->
-                </div>
-                <div class="carousel-nav" id="carousel-nav">
-                    <!-- Carousel dots will be generated by JavaScript -->
-                </div>
+            <div class="loading" id="loading">
+                <div class="spinner"></div>
             </div>
         </div>
     </section>
 
-    <!-- Try On Feature -->
-    <section class="try-on" id="try-on">
-        <div class="container try-on-container">
-            <h2>Virtual Try-On</h2>
-            <p>See how any frame looks on you with our virtual try-on technology. Upload your photo or use your camera to preview glasses before you buy.</p>
-            <div class="try-on-placeholder">
-                <div style="background-color: var(--medium-gray); height: 300px; border-radius: var(--radius); display: flex; align-items: center; justify-content: center; margin-bottom: 2rem;">
-                    <i class="fas fa-camera" style="font-size: 3rem; color: var(--dark-gray);"></i>
-                </div>
-                <button class="btn btn-primary">Launch Virtual Try-On</button>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer>
-        <div class="container">
-            <div class="footer-container">
-                <div class="footer-about">
-                    <div class="footer-logo">Vision Perfect</div>
-                    <p>Providing premium eyewear since 2010. Our mission is to help everyone see the world clearly with style and comfort.</p>
-                    <div style="display: flex; gap: 1rem; margin-top: 1.5rem;">
-                        <a href="#"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                        <a href="#"><i class="fab fa-twitter"></i></a>
-                        <a href="#"><i class="fab fa-pinterest-p"></i></a>
-                    </div>
-                </div>
-                
-                <div class="footer-links">
-                    <h4>Shop</h4>
-                    <ul>
-                        <li><a href="#">All Frames</a></li>
-                        <li><a href="#">Men's Glasses</a></li>
-                        <li><a href="#">Women's Glasses</a></li>
-                        <li><a href="#">Kids' Glasses</a></li>
-                        <li><a href="#">Sunglasses</a></li>
-                    </ul>
-                </div>
-                
-                <div class="footer-links">
-                    <h4>Support</h4>
-                    <ul>
-                        <li><a href="#">Contact Us</a></li>
-                        <li><a href="#">FAQs</a></li>
-                        <li><a href="#">Shipping & Returns</a></li>
-                        <li><a href="#">Prescription Guide</a></li>
-                        <li><a href="#">Privacy Policy</a></li>
-                    </ul>
-                </div>
-                
-                <div class="footer-links">
-                    <h4>Contact</h4>
-                    <ul>
-                        <li><i class="fas fa-map-marker-alt"></i> 123 Vision Street, NY 10001</li>
-                        <li><i class="fas fa-phone"></i> (555) 123-4567</li>
-                        <li><i class="fas fa-envelope"></i> info@visionperfect.com</li>
-                        <li><i class="fas fa-clock"></i> Mon-Fri: 9am-6pm EST</li>
-                    </ul>
-                </div>
-            </div>
+    <!-- Fullscreen Viewer -->
+    <div class="viewer-modal" id="viewer-modal">
+        <button class="viewer-close" id="viewer-close">&times;</button>
+        
+        <button class="viewer-nav viewer-prev" id="viewer-prev">
+            <i class="fas fa-chevron-left"></i>
+        </button>
+        
+        <button class="viewer-nav viewer-next" id="viewer-next">
+            <i class="fas fa-chevron-right"></i>
+        </button>
+        
+        <div class="viewer-container">
+            <img class="viewer-main-image" id="viewer-main-image" src="" alt="">
             
-            <div class="copyright">
-                <p>&copy; 2023 Vision Perfect. All rights reserved.</p>
+            <div class="viewer-info">
+                <h2 id="viewer-title">Frame Name</h2>
+                <div class="viewer-price" id="viewer-price">$129.99</div>
+                <div class="viewer-details">
+                    <span id="viewer-brand">Brand</span>
+                    <span id="viewer-year">Year</span>
+                    <span id="viewer-material">Material</span>
+                </div>
+                <p id="viewer-description">Frame description will appear here</p>
+                
+                <div class="viewer-actions">
+                    <button class="btn btn-primary" id="viewer-add-to-cart">Add to Cart</button>
+                    <button class="btn btn-secondary" id="viewer-add-to-favorites">
+                        <i class="far fa-heart"></i> Add to Favorites
+                    </button>
+                </div>
+                
+                <div class="viewer-thumbnails" id="viewer-thumbnails">
+                    <!-- Thumbnails will be added by JavaScript -->
+                </div>
             </div>
         </div>
-    </footer>
+    </div>
 
     <!-- Shopping Cart Modal -->
     <div class="cart-modal" id="cart-modal">
@@ -1238,558 +1050,457 @@
             </div>
             <div class="cart-buttons">
                 <button class="btn btn-primary">Checkout</button>
-                <button class="btn btn-secondary">Continue Shopping</button>
-            </div>
-        </div>
-    </div>
-    
-    <!-- Quick View Modal -->
-    <div class="quickview-modal" id="quickview-modal">
-        <div class="quickview-container">
-            <div class="quickview-close" id="quickview-close">&times;</div>
-            <div class="quickview-content" id="quickview-content">
-                <!-- Quick view content will be added here -->
+                <button class="btn btn-secondary">Continue Browsing</button>
             </div>
         </div>
     </div>
     
     <div class="overlay" id="overlay"></div>
 
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-container">
+                <div class="footer-about">
+                    <div class="footer-logo">Vision Perfect Gallery</div>
+                    <p>A curated visual experience showcasing the finest eyewear designs from around the world.</p>
+                    <div style="display: flex; gap: 1rem; margin-top: 1.5rem;">
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-pinterest-p"></i></a>
+                        <a href="#"><i class="fab fa-behance"></i></a>
+                        <a href="#"><i class="fab fa-dribbble"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-links">
+                    <h4>Explore</h4>
+                    <ul>
+                        <li><a href="#gallery">Gallery</a></li>
+                        <li><a href="#collections">Collections</a></li>
+                        <li><a href="#brands">Featured Brands</a></li>
+                        <li><a href="#about">Our Story</a></li>
+                        <li><a href="#contact">Visit Us</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-links">
+                    <h4>Resources</h4>
+                    <ul>
+                        <li><a href="#">Frame Guide</a></li>
+                        <li><a href="#">Style Inspiration</a></li>
+                        <li><a href="#">Care Instructions</a></li>
+                        <li><a href="#">Press Kit</a></li>
+                        <li><a href="#">API for Designers</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-links">
+                    <h4>Contact</h4>
+                    <ul>
+                        <li><i class="fas fa-map-marker-alt"></i> Gallery Plaza, NY 10001</li>
+                        <li><i class="fas fa-envelope"></i> gallery@visionperfect.com</li>
+                        <li><i class="fas fa-clock"></i> Tue-Sun: 10am-6pm</li>
+                        <li><i class="fas fa-calendar"></i> By Appointment Only</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2023 Vision Perfect Gallery. All images are for demonstration purposes.</p>
+            </div>
+        </div>
+    </footer>
+
     <script>
-        // Sample product data with multiple images
-        const products = [
+        // Gallery Data with Prices
+        const galleryItems = [
             {
                 id: 1,
                 name: "顺仕眼镜 Eyebrow Frame",
-                price: 89.99,
-                originalPrice: 129.99,
-                gender: "men",
-                type: "full",
-                frameType: "Full Rim",
-                colors: ["#1e293b", "#854d0e", "#0f766e"],
-                colorNames: ["Black", "Gold", "Teal"],
-                images: ["eyebrow1", "eyebrow2", "eyebrow3", "eyebrow4"],
-                description: "Premium eyebrow frame glasses with AC blue light protection and stainless steel frame. Perfect for both casual and professional settings.",
-                features: [
-                    "AC Blue Light Protection",
-                    "Stainless Steel Frame",
-                    "Lightweight Design",
-                    "Anti-glare Coating"
+                description: "Premium eyebrow frame with stainless steel construction and AC blue light protection. A perfect blend of traditional craftsmanship and modern technology.",
+                category: ["classic", "luxury"],
+                price: 189.99,
+                images: [
+                    "https://images.unsplash.com/photo-1511499767150-a48a237f0083?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
+                    "https://images.unsplash.com/photo-1551816230-ef5deaed4a26?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
+                    "https://images.unsplash.com/photo-1572635196237-14b3f281503f?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
                 ],
-                isBestSeller: true,
-                isNew: false,
-                brand: "顺仕眼镜"
+                brand: "顺仕眼镜",
+                year: "2023",
+                material: "Stainless Steel",
+                size: "Large"
             },
             {
                 id: 2,
                 name: "GUSHI Transparent Frame",
-                price: 79.99,
-                originalPrice: 99.99,
-                gender: "women",
-                type: "full",
-                frameType: "Full Rim",
-                colors: ["#ffffff", "#fef3c7", "#fce7f3"],
-                colorNames: ["Transparent", "Cream", "Pink"],
-                images: ["transparent1", "transparent2", "transparent3", "transparent4"],
-                description: "时尚透明框架，超级工厂直接供货，货源稳定，支持OEM/ODM定制。现货充足，质量保证。",
-                features: [
-                    "Transparent Design",
-                    "Direct Factory Supply",
-                    "OEM/ODM Support",
-                    "Stable Stock"
+                description: "Modern transparent acetate frames with minimalist design. Direct from factory production with stable supply chain and OEM/ODM support available.",
+                category: ["modern", "minimalist"],
+                price: 159.99,
+                images: [
+                    "https://images.unsplash.com/photo-1581094794329-c8112a89af12?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
+                    "https://images.unsplash.com/photo-1581094794329-c8112a89af12?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80&h=600",
+                    "https://images.unsplash.com/photo-1556306535-0f09a537f0a3?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
                 ],
-                isBestSeller: true,
-                isNew: true,
-                brand: "GUSHI"
+                brand: "GUSHI",
+                year: "2023",
+                material: "Acetate",
+                size: "Medium"
             },
             {
                 id: 3,
-                name: "Classic Aviator",
+                name: "Classic Aviator Gold",
+                description: "Timeless gold aviator frames with gradient lenses. Inspired by aviation heritage with modern optical precision.",
+                category: ["classic", "vintage"],
                 price: 129.99,
-                gender: "men",
-                type: "full",
-                frameType: "Full Rim",
-                colors: ["#1e293b", "#854d0e", "#0f766e"],
-                colorNames: ["Black", "Gold", "Teal"],
-                images: ["aviator1", "aviator2", "aviator3", "aviator4"],
-                description: "Timeless aviator style with premium materials and UV protection. A perfect blend of classic design and modern technology.",
-                features: [
-                    "UV400 Protection",
-                    "Lightweight Metal Frame",
-                    "Polarized Lenses",
-                    "Adjustable Nose Pads"
+                images: [
+                    "https://images.unsplash.com/photo-1511499767150-a48a237f0083?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
+                    "https://images.unsplash.com/photo-1551816230-ef5deaed4a26?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
+                    "https://images.unsplash.com/photo-1572635196237-14b3f281503f?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
                 ],
-                isBestSeller: true,
-                isNew: false,
-                brand: "Ray-Ban"
+                brand: "Ray-Ban",
+                year: "2022",
+                material: "Metal",
+                size: "Large"
             },
             {
                 id: 4,
-                name: "Modern Square",
-                price: 89.99,
-                gender: "women",
-                type: "full",
-                frameType: "Full Rim",
-                colors: ["#7c2d12", "#1e293b", "#701a75"],
-                colorNames: ["Tortoise", "Black", "Purple"],
-                images: ["square1", "square2", "square3", "square4"],
-                description: "Contemporary square frames with anti-reflective coating. Ideal for everyday wear and professional environments.",
-                features: [
-                    "Anti-Reflective Coating",
-                    "Flexible Hinges",
-                    "Scratch-Resistant",
-                    "Comfort Fit"
+                name: "Geometric Titanium",
+                description: "Bold geometric frames made from lightweight titanium. Architectural design meets comfortable wear.",
+                category: ["modern", "designer"],
+                price: 219.99,
+                images: [
+                    "https://images.unsplash.com/photo-1556306535-0f09a537f0a3?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
+                    "https://images.unsplash.com/photo-1581094794329-c8112a89af12?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
+                    "https://images.unsplash.com/photo-1511499767150-a48a237f0083?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
                 ],
-                isBestSeller: true,
-                isNew: false,
-                brand: "Oakley"
+                brand: "Oakley",
+                year: "2023",
+                material: "Titanium",
+                size: "Medium"
             },
             {
                 id: 5,
-                name: "Rimless Elegance",
-                price: 159.99,
-                gender: "women",
-                type: "rimless",
-                frameType: "Rimless",
-                colors: ["#334155", "#7c2d12"],
-                colorNames: ["Gray", "Brown"],
-                images: ["rimless1", "rimless2", "rimless3", "rimless4"],
-                description: "Ultra-light rimless design for maximum comfort. Perfect for those who prefer minimalist style without compromising on durability.",
-                features: [
-                    "Ultra Lightweight",
-                    "Rimless Design",
-                    "High-Index Lenses",
-                    "Spring Hinges"
+                name: "Cat Eye Vintage",
+                description: "Vintage-inspired cat eye frames with delicate filigree details. A feminine silhouette with retro charm.",
+                category: ["vintage", "luxury"],
+                price: 179.99,
+                images: [
+                    "https://images.unsplash.com/photo-1572635196237-14b3f281503f?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
+                    "https://images.unsplash.com/photo-1551816230-ef5deaed4a26?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
+                    "https://images.unsplash.com/photo-1511499767150-a48a237f0083?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
                 ],
-                isBestSeller: false,
-                isNew: true,
-                brand: "Silhouette"
+                brand: "Gucci",
+                year: "2023",
+                material: "Acetate",
+                size: "Small"
             },
             {
                 id: 6,
-                name: "Half Rim Professional",
-                price: 119.99,
-                gender: "men",
-                type: "half",
-                frameType: "Half Rim",
-                colors: ["#1e293b", "#0f766e"],
-                colorNames: ["Black", "Blue"],
-                images: ["halfrim1", "halfrim2", "halfrim3", "halfrim4"],
-                description: "Professional half-rim frames combining style and functionality. Ideal for office wear and formal occasions.",
-                features: [
-                    "Half-Rim Design",
-                    "Professional Style",
-                    "Durable Construction",
-                    "Comfortable Fit"
+                name: "Sport Performance",
+                description: "High-performance sports frames with wraparound design and interchangeable lenses. Built for athletes.",
+                category: ["sports", "modern"],
+                price: 149.99,
+                images: [
+                    "https://images.unsplash.com/photo-1511499767150-a48a237f0083?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
+                    "https://images.unsplash.com/photo-1556306535-0f09a537f0a3?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
+                    "https://images.unsplash.com/photo-1581094794329-c8112a89af12?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
                 ],
-                isBestSeller: false,
-                isNew: false,
-                brand: "Persol"
+                brand: "Nike",
+                year: "2023",
+                material: "Polycarbonate",
+                size: "Large"
             },
             {
                 id: 7,
-                name: "Retro Round",
-                price: 99.99,
-                gender: "women",
-                type: "full",
-                frameType: "Full Rim",
-                colors: ["#854d0e", "#701a75", "#1e293b"],
-                colorNames: ["Gold", "Purple", "Black"],
-                images: ["round1", "round2", "round3", "round4"],
-                description: "Vintage-inspired round frames with modern lens technology. A perfect statement piece for fashion-forward individuals.",
-                features: [
-                    "Retro Design",
-                    "Modern Lens Tech",
-                    "Comfort Fit",
-                    "Fashion Statement"
+                name: "Minimalist Rimless",
+                description: "Ultra-light rimless frames with almost invisible design. Maximum comfort with minimal visual impact.",
+                category: ["minimalist", "modern"],
+                price: 199.99,
+                images: [
+                    "https://images.unsplash.com/photo-1556306535-0f09a537f0a3?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
+                    "https://images.unsplash.com/photo-1511499767150-a48a237f0083?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
+                    "https://images.unsplash.com/photo-1572635196237-14b3f281503f?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
                 ],
-                isBestSeller: true,
-                isNew: false,
-                brand: "Moscot"
+                brand: "Silhouette",
+                year: "2023",
+                material: "Titanium",
+                size: "Medium"
             },
             {
                 id: 8,
-                name: "Sport Wraparound",
-                price: 149.99,
-                gender: "men",
-                type: "full",
-                frameType: "Full Rim",
-                colors: ["#1e293b", "#0f766e"],
-                colorNames: ["Black", "Blue"],
-                images: ["sport1", "sport2", "sport3", "sport4"],
-                description: "Performance-oriented sports glasses with wraparound design for maximum coverage and protection during activities.",
-                features: [
-                    "Wraparound Design",
-                    "Sports Performance",
-                    "Shatterproof Lenses",
-                    "Non-slip Temples"
+                name: "Designer Oversized",
+                description: "Bold oversized frames making a fashion statement. Featured in multiple fashion week collections.",
+                category: ["designer", "luxury"],
+                price: 249.99,
+                images: [
+                    "https://images.unsplash.com/photo-1572635196237-14b3f281503f?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
+                    "https://images.unsplash.com/photo-1551816230-ef5deaed4a26?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
+                    "https://images.unsplash.com/photo-1511499767150-a48a237f0083?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
                 ],
-                isBestSeller: false,
-                isNew: true,
-                brand: "Nike"
+                brand: "Prada",
+                year: "2023",
+                material: "Acetate",
+                size: "Large"
             },
             {
                 id: 9,
-                name: "Kids Explorer",
-                price: 69.99,
-                gender: "kids",
-                type: "full",
-                frameType: "Full Rim",
-                colors: ["#0f766e", "#7c2d12", "#701a75"],
-                colorNames: ["Blue", "Red", "Purple"],
-                images: ["kids1", "kids2", "kids3", "kids4"],
-                description: "Durable and fun frames designed specifically for children. Made with flexible materials to withstand active lifestyles.",
-                features: [
-                    "Kid-Friendly Design",
-                    "Flexible Materials",
-                    "Safety Hinges",
-                    "Fun Colors"
+                name: "Round Vintage Tortoise",
+                description: "Classic round frames in tortoise shell pattern. Inspired by 70s intellectual style with modern comfort.",
+                category: ["vintage", "classic"],
+                price: 139.99,
+                images: [
+                    "https://images.unsplash.com/photo-1511499767150-a48a237f0083?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
+                    "https://images.unsplash.com/photo-1556306535-0f09a537f0a3?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
+                    "https://images.unsplash.com/photo-1572635196237-14b3f281503f?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
                 ],
-                isBestSeller: false,
-                isNew: false,
-                brand: "Miraflex"
+                brand: "Moscot",
+                year: "2023",
+                material: "Acetate",
+                size: "Medium"
             },
             {
                 id: 10,
-                name: "Designer Cat Eye",
-                price: 179.99,
-                gender: "women",
-                type: "full",
-                frameType: "Full Rim",
-                colors: ["#7c2d12", "#1e293b", "#701a75"],
-                colorNames: ["Tortoise", "Black", "Purple"],
-                images: ["cateye1", "cateye2", "cateye3", "cateye4"],
-                description: "Elegant cat-eye frames with designer details. Perfect for making a fashion statement while enjoying premium eyewear.",
-                features: [
-                    "Designer Details",
-                    "Cat-Eye Shape",
-                    "Premium Materials",
-                    "Fashion Focus"
+                name: "Tech Blue Light",
+                description: "Smart frames with integrated blue light filtering technology. Designed for digital lifestyle protection.",
+                category: ["modern", "tech"],
+                price: 169.99,
+                images: [
+                    "https://images.unsplash.com/photo-1556306535-0f09a537f0a3?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
+                    "https://images.unsplash.com/photo-1511499767150-a48a237f0083?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
+                    "https://images.unsplash.com/photo-1572635196237-14b3f281503f?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
                 ],
-                isBestSeller: true,
-                isNew: false,
-                brand: "Gucci"
+                brand: "Felix Gray",
+                year: "2023",
+                material: "TR90",
+                size: "Medium"
             },
             {
                 id: 11,
-                name: "Minimalist Rectangle",
-                price: 109.99,
-                gender: "men",
-                type: "half",
-                frameType: "Half Rim",
-                colors: ["#1e293b", "#334155"],
-                colorNames: ["Black", "Gray"],
-                images: ["rectangle1", "rectangle2", "rectangle3", "rectangle4"],
-                description: "Clean, minimalist rectangle frames for a sophisticated look. Perfect for professionals seeking understated elegance.",
-                features: [
-                    "Minimalist Design",
-                    "Rectangle Shape",
-                    "Professional Look",
-                    "Lightweight"
+                name: "Bold Geometric Black",
+                description: "Architectural geometric frames in matte black. Sharp angles and clean lines define this modern design.",
+                category: ["modern", "designer"],
+                price: 229.99,
+                images: [
+                    "https://images.unsplash.com/photo-1572635196237-14b3f281503f?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
+                    "https://images.unsplash.com/photo-1551816230-ef5deaed4a26?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
+                    "https://images.unsplash.com/photo-1511499767150-a48a237f0083?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
                 ],
-                isBestSeller: false,
-                isNew: true,
-                brand: "Tom Ford"
+                brand: "Tom Ford",
+                year: "2023",
+                material: "Acetate",
+                size: "Large"
             },
             {
                 id: 12,
-                name: "Oversized Fashion",
-                price: 139.99,
-                gender: "women",
-                type: "full",
-                frameType: "Full Rim",
-                colors: ["#7c2d12", "#701a75"],
-                colorNames: ["Tortoise", "Purple"],
-                images: ["oversized1", "oversized2", "oversized3", "oversized4"],
-                description: "Bold oversized frames that make a fashion statement. Combining style with comfort for all-day wear.",
-                features: [
-                    "Oversized Design",
-                    "Fashion Forward",
-                    "Comfortable Fit",
-                    "Statement Piece"
+                name: "Half Frame Clear",
+                description: "Innovative half-frame design in clear acetate. Minimalist approach with structural integrity.",
+                category: ["minimalist", "modern"],
+                price: 179.99,
+                images: [
+                    "https://images.unsplash.com/photo-1511499767150-a48a237f0083?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
+                    "https://images.unsplash.com/photo-1556306535-0f09a537f0a3?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
+                    "https://images.unsplash.com/photo-1572635196237-14b3f281503f?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
                 ],
-                isBestSeller: false,
-                isNew: false,
-                brand: "Prada"
+                brand: "Lindberg",
+                year: "2023",
+                material: "Acetate",
+                size: "Medium"
             }
         ];
 
-        // Cart and wishlist data
-        let cart = [];
-        let wishlist = [];
-        let filteredProducts = [...products];
-        let currentQuickViewProduct = null;
-        
-        // DOM elements
-        const productsContainer = document.getElementById('products-container');
+        // DOM Elements
+        const galleryGrid = document.getElementById('gallery-grid');
+        const filterTags = document.querySelectorAll('.filter-tag');
+        const loading = document.getElementById('loading');
+        const viewerModal = document.getElementById('viewer-modal');
+        const viewerClose = document.getElementById('viewer-close');
+        const viewerMainImage = document.getElementById('viewer-main-image');
+        const viewerTitle = document.getElementById('viewer-title');
+        const viewerPrice = document.getElementById('viewer-price');
+        const viewerDescription = document.getElementById('viewer-description');
+        const viewerBrand = document.getElementById('viewer-brand');
+        const viewerYear = document.getElementById('viewer-year');
+        const viewerMaterial = document.getElementById('viewer-material');
+        const viewerThumbnails = document.getElementById('viewer-thumbnails');
+        const viewerPrev = document.getElementById('viewer-prev');
+        const viewerNext = document.getElementById('viewer-next');
+        const viewerAddToCart = document.getElementById('viewer-add-to-cart');
+        const viewerAddToFavorites = document.getElementById('viewer-add-to-favorites');
+        const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+        const navMenu = document.querySelector('nav');
+        const cartIcon = document.querySelector('.cart-icon');
+        const wishlistIcon = document.querySelector('.wishlist-icon');
         const cartCount = document.querySelector('.cart-count');
         const wishlistCount = document.querySelector('.wishlist-count');
-        const cartIcon = document.querySelector('.cart-icon');
         const cartModal = document.getElementById('cart-modal');
         const overlay = document.getElementById('overlay');
         const closeCartBtn = document.querySelector('.close-cart');
         const cartItemsContainer = document.getElementById('cart-items');
         const emptyCartMessage = document.getElementById('empty-cart-message');
         const cartTotal = document.getElementById('cart-total');
-        const carousel = document.getElementById('carousel');
-        const carouselNav = document.getElementById('carousel-nav');
-        const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
-        const navMenu = document.querySelector('nav');
-        const genderFilter = document.getElementById('gender');
-        const typeFilter = document.getElementById('type');
-        const sortFilter = document.getElementById('sort');
-        const quickviewModal = document.getElementById('quickview-modal');
-        const quickviewClose = document.getElementById('quickview-close');
-        const quickviewContent = document.getElementById('quickview-content');
 
-        // Initialize the page
+        // State
+        let currentFilter = 'all';
+        let currentViewerIndex = 0;
+        let currentFilteredItems = [];
+        let favorites = [];
+        let cart = [];
+
+        // Initialize
         document.addEventListener('DOMContentLoaded', () => {
-            renderProducts();
+            renderGallery();
             setupEventListeners();
-            setupCarousel();
             updateCartCount();
             updateWishlistCount();
+            
+            // Load saved favorites and cart from localStorage
+            loadFromLocalStorage();
+            
+            // Simulate loading
+            setTimeout(() => {
+                loading.style.display = 'none';
+            }, 800);
         });
 
-        // Render products to the page
-        function renderProducts() {
-            productsContainer.innerHTML = '';
+        // Render gallery items
+        function renderGallery() {
+            galleryGrid.innerHTML = '';
             
-            filteredProducts.forEach(product => {
-                const productCard = document.createElement('div');
-                productCard.className = 'product-card';
+            // Filter items based on current filter
+            currentFilteredItems = galleryItems.filter(item => {
+                if (currentFilter === 'all') return true;
+                return item.category.includes(currentFilter);
+            });
+            
+            // Create gallery items
+            currentFilteredItems.forEach((item, index) => {
+                const galleryItem = document.createElement('div');
+                galleryItem.className = 'gallery-item';
+                galleryItem.dataset.id = item.id;
                 
-                // Create product image HTML with multiple images
-                const imagesHTML = `
-                    <div class="product-image">
-                        <img src="https://via.placeholder.com/300x200/cccccc/666666?text=${product.images[0]}" alt="${product.name}">
-                        <button class="wishlist-btn" data-id="${product.id}">
-                            <i class="${wishlist.includes(product.id) ? 'fas' : 'far'} fa-heart"></i>
+                // Check if item is in favorites
+                const isFavorited = favorites.includes(item.id);
+                
+                galleryItem.innerHTML = `
+                    <img src="${item.images[0]}" alt="${item.name}" class="gallery-image">
+                    
+                    <div class="gallery-actions">
+                        <button class="action-btn favorite-btn ${isFavorited ? 'favorited' : ''}" data-id="${item.id}">
+                            <i class="${isFavorited ? 'fas' : 'far'} fa-heart"></i>
+                        </button>
+                        <button class="action-btn cart-btn" data-id="${item.id}">
+                            <i class="fas fa-shopping-cart"></i>
                         </button>
                     </div>
-                    <div class="product-info">
-                        <h3 class="product-name">${product.name}</h3>
-                        <div class="product-price">
-                            $${product.price.toFixed(2)}
-                            ${product.originalPrice ? `<span class="quickview-original-price">$${product.originalPrice.toFixed(2)}</span>` : ''}
+                    
+                    <div class="gallery-overlay">
+                        <div class="frame-name">${item.name}</div>
+                        <div class="frame-details">
+                            <span>${item.brand}</span>
+                            <span>${item.year}</span>
                         </div>
-                        <div class="product-details">
-                            <span>${product.frameType}</span>
-                            <span>${product.brand || 'Vision Perfect'}</span>
-                        </div>
-                        <div class="product-colors">
-                            ${product.colors.map((color, index) => `
-                                <div class="color-option" style="background-color: ${color};" title="${product.colorNames[index]}"></div>
-                            `).join('')}
-                        </div>
-                        <div class="product-actions">
-                            <button class="btn btn-primary btn-small add-to-cart" data-id="${product.id}">Add to Cart</button>
-                            <button class="btn btn-secondary btn-small quick-view" data-id="${product.id}">Quick View</button>
-                        </div>
+                        <div class="frame-price">$${item.price.toFixed(2)}</div>
                     </div>
                 `;
                 
-                productCard.innerHTML = imagesHTML;
-                productsContainer.appendChild(productCard);
-            });
-            
-            // Add event listeners to the new buttons
-            document.querySelectorAll('.add-to-cart').forEach(button => {
-                button.addEventListener('click', (e) => {
-                    const productId = parseInt(e.target.dataset.id);
-                    addToCart(productId);
+                galleryGrid.appendChild(galleryItem);
+                
+                // Add click event to open viewer
+                galleryItem.addEventListener('click', (e) => {
+                    // Don't open viewer if clicking on action buttons
+                    if (!e.target.closest('.gallery-actions')) {
+                        openViewer(index);
+                    }
                 });
-            });
-            
-            document.querySelectorAll('.quick-view').forEach(button => {
-                button.addEventListener('click', (e) => {
-                    const productId = parseInt(e.target.dataset.id);
-                    openQuickView(productId);
+                
+                // Add event listeners to action buttons
+                const favoriteBtn = galleryItem.querySelector('.favorite-btn');
+                const cartBtn = galleryItem.querySelector('.cart-btn');
+                
+                favoriteBtn.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    toggleFavorite(item.id);
+                    const icon = favoriteBtn.querySelector('i');
+                    favoriteBtn.classList.toggle('favorited');
+                    icon.className = favoriteBtn.classList.contains('favorited') ? 'fas fa-heart' : 'far fa-heart';
                 });
-            });
-            
-            document.querySelectorAll('.wishlist-btn').forEach(button => {
-                button.addEventListener('click', (e) => {
-                    const productId = parseInt(e.target.dataset.id);
-                    toggleWishlist(productId);
+                
+                cartBtn.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    addToCart(item.id);
                 });
             });
         }
 
-        // Open Quick View modal
-        function openQuickView(productId) {
-            const product = products.find(p => p.id === productId);
-            if (!product) return;
+        // Toggle favorite
+        function toggleFavorite(itemId) {
+            const index = favorites.indexOf(itemId);
             
-            currentQuickViewProduct = product;
+            if (index > -1) {
+                favorites.splice(index, 1);
+            } else {
+                favorites.push(itemId);
+            }
             
-            // Create quick view content
-            const quickViewHTML = `
-                <div class="quickview-images">
-                    <div class="quickview-main-image" id="quickview-main-image">
-                        <img src="https://via.placeholder.com/500x300/cccccc/666666?text=${product.images[0]}" alt="${product.name}" id="main-quickview-image">
-                    </div>
-                    <div class="quickview-thumbnails" id="quickview-thumbnails">
-                        ${product.images.map((img, index) => `
-                            <div class="quickview-thumbnail ${index === 0 ? 'active' : ''}" data-image="${img}">
-                                <img src="https://via.placeholder.com/100x80/cccccc/666666?text=${img}" alt="${product.name} - View ${index + 1}">
-                            </div>
-                        `).join('')}
-                    </div>
-                </div>
-                <div class="quickview-details">
-                    <h2 class="quickview-name">${product.name}</h2>
-                    <div class="quickview-price">
-                        $${product.price.toFixed(2)}
-                        ${product.originalPrice ? `<span class="quickview-original-price">$${product.originalPrice.toFixed(2)}</span>` : ''}
-                    </div>
-                    <p class="quickview-description">${product.description}</p>
-                    
-                    <div class="quickview-specs">
-                        <h4>Features</h4>
-                        <ul>
-                            ${product.features.map(feature => `
-                                <li><i class="fas fa-check"></i> ${feature}</li>
-                            `).join('')}
-                            <li><i class="fas fa-tshirt"></i> Gender: ${product.gender.charAt(0).toUpperCase() + product.gender.slice(1)}</li>
-                            <li><i class="fas fa-layer-group"></i> Frame Type: ${product.frameType}</li>
-                            <li><i class="fas fa-tag"></i> Brand: ${product.brand || 'Vision Perfect'}</li>
-                        </ul>
-                    </div>
-                    
-                    <div class="quickview-colors">
-                        <h4>Available Colors</h4>
-                        <div class="color-options">
-                            ${product.colors.map((color, index) => `
-                                <div class="color-option-large" style="background-color: ${color};" title="${product.colorNames[index]}"></div>
-                            `).join('')}
-                        </div>
-                    </div>
-                    
-                    <div class="quickview-actions">
-                        <button class="btn btn-primary add-to-cart-quickview" data-id="${product.id}">Add to Cart</button>
-                        <button class="btn btn-secondary" id="add-to-wishlist-quickview" data-id="${product.id}">
-                            <i class="${wishlist.includes(product.id) ? 'fas' : 'far'} fa-heart"></i> Wishlist
-                        </button>
-                    </div>
-                </div>
-            `;
+            updateWishlistCount();
+            saveToLocalStorage();
             
-            quickviewContent.innerHTML = quickViewHTML;
-            quickviewModal.classList.add('active');
-            overlay.classList.add('active');
-            document.body.style.overflow = 'hidden';
-            
-            // Add event listeners for quick view
-            document.querySelectorAll('.quickview-thumbnail').forEach(thumbnail => {
-                thumbnail.addEventListener('click', () => {
-                    // Update active thumbnail
-                    document.querySelectorAll('.quickview-thumbnail').forEach(t => t.classList.remove('active'));
-                    thumbnail.classList.add('active');
-                    
-                    // Update main image
-                    const mainImage = document.getElementById('main-quickview-image');
-                    const imageName = thumbnail.dataset.image;
-                    mainImage.src = `https://via.placeholder.com/500x300/cccccc/666666?text=${imageName}`;
-                    mainImage.alt = `${product.name} - ${imageName}`;
-                });
-            });
-            
-            // Add to cart from quick view
-            document.querySelector('.add-to-cart-quickview').addEventListener('click', () => {
-                addToCart(product.id);
-                closeQuickView();
-            });
-            
-            // Add to wishlist from quick view
-            document.getElementById('add-to-wishlist-quickview').addEventListener('click', (e) => {
-                toggleWishlist(product.id);
-                const icon = e.target.querySelector('i') || e.target;
-                icon.className = wishlist.includes(product.id) ? 'fas fa-heart' : 'far fa-heart';
-            });
+            // Show notification
+            showNotification(favorites.includes(itemId) ? 'Added to favorites!' : 'Removed from favorites!');
         }
 
-        // Close Quick View modal
-        function closeQuickView() {
-            quickviewModal.classList.remove('active');
-            overlay.classList.remove('active');
-            document.body.style.overflow = 'auto';
-            currentQuickViewProduct = null;
-        }
-
-        // Add to cart function
-        function addToCart(productId) {
-            const product = products.find(p => p.id === productId);
-            if (!product) return;
+        // Add to cart
+        function addToCart(itemId) {
+            const item = galleryItems.find(p => p.id === itemId);
+            if (!item) return;
             
-            const existingItem = cart.find(item => item.id === productId);
+            const existingItem = cart.find(cartItem => cartItem.id === itemId);
             
             if (existingItem) {
                 existingItem.quantity++;
             } else {
                 cart.push({
-                    id: product.id,
-                    name: product.name,
-                    price: product.price,
-                    image: product.images[0],
+                    id: item.id,
+                    name: item.name,
+                    price: item.price,
+                    image: item.images[0],
                     quantity: 1
                 });
             }
             
             updateCartCount();
             updateCartDisplay();
+            saveToLocalStorage();
             
-            // Show a quick confirmation
-            const addButton = document.querySelector(`.add-to-cart[data-id="${productId}"]`);
-            const originalText = addButton.textContent;
-            addButton.textContent = 'Added!';
-            addButton.style.backgroundColor = '#10b981';
-            
-            setTimeout(() => {
-                addButton.textContent = originalText;
-                addButton.style.backgroundColor = '';
-            }, 1000);
+            // Show notification
+            showNotification('Added to cart!');
         }
 
-        // Toggle wishlist function
-        function toggleWishlist(productId) {
-            const index = wishlist.indexOf(productId);
+        // Remove from cart
+        function removeFromCart(itemId) {
+            cart = cart.filter(item => item.id !== itemId);
+            updateCartCount();
+            updateCartDisplay();
+            saveToLocalStorage();
+        }
+
+        // Update cart quantity
+        function updateCartQuantity(itemId, change) {
+            const item = cart.find(cartItem => cartItem.id === itemId);
+            if (!item) return;
             
-            if (index > -1) {
-                wishlist.splice(index, 1);
+            item.quantity += change;
+            
+            if (item.quantity <= 0) {
+                removeFromCart(itemId);
             } else {
-                wishlist.push(productId);
-            }
-            
-            updateWishlistCount();
-            
-            // Update wishlist button in product card
-            const wishlistBtn = document.querySelector(`.wishlist-btn[data-id="${productId}"] i`);
-            if (wishlistBtn) {
-                wishlistBtn.className = wishlist.includes(productId) ? 'fas fa-heart' : 'far fa-heart';
-            }
-            
-            // Update wishlist button in quick view if open
-            if (currentQuickViewProduct && currentQuickViewProduct.id === productId) {
-                const quickViewWishlistBtn = document.querySelector('#add-to-wishlist-quickview i');
-                if (quickViewWishlistBtn) {
-                    quickViewWishlistBtn.className = wishlist.includes(productId) ? 'fas fa-heart' : 'far fa-heart';
-                }
+                updateCartCount();
+                updateCartDisplay();
+                saveToLocalStorage();
             }
         }
 
-        // Update cart count display
-        function updateCartCount() {
-            const totalItems = cart.reduce((total, item) => total + item.quantity, 0);
-            cartCount.textContent = totalItems;
-        }
-
-        // Update wishlist count display
-        function updateWishlistCount() {
-            wishlistCount.textContent = wishlist.length;
-        }
-
-        // Update cart display in modal
+        // Update cart display
         function updateCartDisplay() {
             if (cart.length === 0) {
                 emptyCartMessage.style.display = 'block';
@@ -1808,7 +1519,7 @@
                 cartHTML += `
                     <div class="cart-item">
                         <div class="cart-item-img">
-                            <img src="https://via.placeholder.com/80x60/cccccc/666666?text=${item.image}" alt="${item.name}" width="60">
+                            <img src="${item.image}" alt="${item.name}">
                         </div>
                         <div class="cart-item-info">
                             <div class="cart-item-name">${item.name}</div>
@@ -1852,125 +1563,166 @@
             });
         }
 
-        // Update cart quantity
-        function updateCartQuantity(productId, change) {
-            const item = cart.find(item => item.id === productId);
-            if (!item) return;
-            
-            item.quantity += change;
-            
-            if (item.quantity <= 0) {
-                removeFromCart(productId);
-            } else {
-                updateCartCount();
-                updateCartDisplay();
-            }
+        // Update cart count
+        function updateCartCount() {
+            const totalItems = cart.reduce((total, item) => total + item.quantity, 0);
+            cartCount.textContent = totalItems;
         }
 
-        // Remove from cart
-        function removeFromCart(productId) {
-            cart = cart.filter(item => item.id !== productId);
-            updateCartCount();
-            updateCartDisplay();
+        // Update wishlist count
+        function updateWishlistCount() {
+            wishlistCount.textContent = favorites.length;
         }
 
-        // Setup carousel for best sellers
-        function setupCarousel() {
-            const bestSellers = products.filter(p => p.isBestSeller);
+        // Open fullscreen viewer
+        function openViewer(index) {
+            currentViewerIndex = index;
+            const item = currentFilteredItems[index];
             
-            if (bestSellers.length === 0) return;
+            // Update viewer content
+            viewerMainImage.src = item.images[0];
+            viewerMainImage.alt = item.name;
+            viewerTitle.textContent = item.name;
+            viewerPrice.textContent = `$${item.price.toFixed(2)}`;
+            viewerDescription.textContent = item.description;
+            viewerBrand.textContent = item.brand;
+            viewerYear.textContent = item.year;
+            viewerMaterial.textContent = item.material;
             
-            carousel.innerHTML = '';
-            carouselNav.innerHTML = '';
+            // Update favorite button state
+            const isFavorited = favorites.includes(item.id);
+            const favoriteIcon = viewerAddToFavorites.querySelector('i');
+            viewerAddToFavorites.innerHTML = `<i class="${isFavorited ? 'fas' : 'far'} fa-heart"></i> ${isFavorited ? 'Remove from' : 'Add to'} Favorites`;
             
-            bestSellers.forEach((product, index) => {
-                // Carousel item
-                const carouselItem = document.createElement('div');
-                carouselItem.className = 'carousel-item';
-                carouselItem.innerHTML = `
-                    <div class="product-card">
-                        <div class="product-image">
-                            <img src="https://via.placeholder.com/300x200/cccccc/666666?text=${product.images[0]}" alt="${product.name}">
-                            <div class="wishlist-btn" data-id="${product.id}">
-                                <i class="${wishlist.includes(product.id) ? 'fas' : 'far'} fa-heart"></i>
-                            </div>
-                        </div>
-                        <div class="product-info">
-                            <h3 class="product-name">${product.name}</h3>
-                            <div class="product-price">$${product.price.toFixed(2)}</div>
-                            <div class="product-details">
-                                <span>${product.frameType}</span>
-                                <span>${product.brand || 'Vision Perfect'}</span>
-                            </div>
-                            <div class="product-actions">
-                                <button class="btn btn-primary btn-small add-to-cart" data-id="${product.id}">Add to Cart</button>
-                                <button class="btn btn-secondary btn-small quick-view" data-id="${product.id}">Quick View</button>
-                            </div>
-                        </div>
-                    </div>
-                `;
-                carousel.appendChild(carouselItem);
+            // Set data-id on buttons
+            viewerAddToCart.dataset.id = item.id;
+            viewerAddToFavorites.dataset.id = item.id;
+            
+            // Create thumbnails
+            viewerThumbnails.innerHTML = '';
+            item.images.forEach((image, imgIndex) => {
+                const thumbnail = document.createElement('div');
+                thumbnail.className = `viewer-thumbnail ${imgIndex === 0 ? 'active' : ''}`;
+                thumbnail.dataset.index = imgIndex;
                 
-                // Carousel dot
-                const carouselDot = document.createElement('div');
-                carouselDot.className = `carousel-dot ${index === 0 ? 'active' : ''}`;
-                carouselDot.dataset.index = index;
-                carouselNav.appendChild(carouselDot);
+                thumbnail.innerHTML = `<img src="${image}" alt="${item.name} - View ${imgIndex + 1}">`;
                 
-                // Add event listener to dot
-                carouselDot.addEventListener('click', () => {
-                    goToCarouselSlide(index);
+                thumbnail.addEventListener('click', () => {
+                    viewerMainImage.src = image;
+                    document.querySelectorAll('.viewer-thumbnail').forEach(t => t.classList.remove('active'));
+                    thumbnail.classList.add('active');
                 });
+                
+                viewerThumbnails.appendChild(thumbnail);
             });
             
-            // Add event listeners to carousel items
-            setTimeout(() => {
-                carousel.querySelectorAll('.add-to-cart').forEach(button => {
-                    button.addEventListener('click', (e) => {
-                        const productId = parseInt(e.target.dataset.id);
-                        addToCart(productId);
-                    });
-                });
-                
-                carousel.querySelectorAll('.quick-view').forEach(button => {
-                    button.addEventListener('click', (e) => {
-                        const productId = parseInt(e.target.dataset.id);
-                        openQuickView(productId);
-                    });
-                });
-                
-                carousel.querySelectorAll('.wishlist-btn').forEach(button => {
-                    button.addEventListener('click', (e) => {
-                        const productId = parseInt(e.target.dataset.id);
-                        toggleWishlist(productId);
-                    });
-                });
-            }, 100);
+            // Open viewer
+            viewerModal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        // Close viewer
+        function closeViewer() {
+            viewerModal.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+
+        // Navigate viewer
+        function navigateViewer(direction) {
+            let newIndex = currentViewerIndex + direction;
             
-            // Auto-rotate carousel
-            let currentSlide = 0;
-            const totalSlides = bestSellers.length;
-            
-            function goToCarouselSlide(index) {
-                currentSlide = index;
-                carousel.style.transform = `translateX(-${index * 100}%)`;
-                
-                // Update active dot
-                document.querySelectorAll('.carousel-dot').forEach((dot, i) => {
-                    dot.classList.toggle('active', i === index);
-                });
+            // Loop around
+            if (newIndex < 0) {
+                newIndex = currentFilteredItems.length - 1;
+            } else if (newIndex >= currentFilteredItems.length) {
+                newIndex = 0;
             }
             
-            // Auto rotate every 5 seconds
-            setInterval(() => {
-                currentSlide = (currentSlide + 1) % totalSlides;
-                goToCarouselSlide(currentSlide);
-            }, 5000);
+            openViewer(newIndex);
+        }
+
+        // Show notification
+        function showNotification(message) {
+            // Create notification element
+            const notification = document.createElement('div');
+            notification.className = 'notification';
+            notification.textContent = message;
+            notification.style.cssText = `
+                position: fixed;
+                top: 100px;
+                right: 20px;
+                background-color: var(--primary-blue);
+                color: white;
+                padding: 1rem 1.5rem;
+                border-radius: var(--radius);
+                box-shadow: var(--shadow);
+                z-index: 3000;
+                transform: translateX(100%);
+                opacity: 0;
+                transition: transform 0.3s ease, opacity 0.3s ease;
+            `;
+            
+            document.body.appendChild(notification);
+            
+            // Animate in
+            setTimeout(() => {
+                notification.style.transform = 'translateX(0)';
+                notification.style.opacity = '1';
+            }, 10);
+            
+            // Remove after 3 seconds
+            setTimeout(() => {
+                notification.style.transform = 'translateX(100%)';
+                notification.style.opacity = '0';
+                
+                setTimeout(() => {
+                    document.body.removeChild(notification);
+                }, 300);
+            }, 3000);
+        }
+
+        // Save to localStorage
+        function saveToLocalStorage() {
+            localStorage.setItem('visionPerfectFavorites', JSON.stringify(favorites));
+            localStorage.setItem('visionPerfectCart', JSON.stringify(cart));
+        }
+
+        // Load from localStorage
+        function loadFromLocalStorage() {
+            const savedFavorites = localStorage.getItem('visionPerfectFavorites');
+            const savedCart = localStorage.getItem('visionPerfectCart');
+            
+            if (savedFavorites) {
+                favorites = JSON.parse(savedFavorites);
+            }
+            
+            if (savedCart) {
+                cart = JSON.parse(savedCart);
+            }
         }
 
         // Setup event listeners
         function setupEventListeners() {
-            // Mobile menu toggle
+            // Filter tags
+            filterTags.forEach(tag => {
+                tag.addEventListener('click', () => {
+                    // Update active tag
+                    filterTags.forEach(t => t.classList.remove('active'));
+                    tag.classList.add('active');
+                    
+                    // Update filter and re-render
+                    currentFilter = tag.dataset.filter;
+                    loading.style.display = 'flex';
+                    
+                    // Simulate loading delay
+                    setTimeout(() => {
+                        renderGallery();
+                        loading.style.display = 'none';
+                    }, 500);
+                });
+            });
+            
+            // Mobile menu
             mobileMenuBtn.addEventListener('click', () => {
                 navMenu.classList.toggle('active');
             });
@@ -1982,12 +1734,47 @@
                 });
             });
             
-            // Cart icon click
+            // Viewer controls
+            viewerClose.addEventListener('click', closeViewer);
+            viewerPrev.addEventListener('click', () => navigateViewer(-1));
+            viewerNext.addEventListener('click', () => navigateViewer(1));
+            
+            // Viewer action buttons
+            viewerAddToCart.addEventListener('click', () => {
+                const itemId = parseInt(viewerAddToCart.dataset.id);
+                addToCart(itemId);
+                closeViewer();
+            });
+            
+            viewerAddToFavorites.addEventListener('click', () => {
+                const itemId = parseInt(viewerAddToFavorites.dataset.id);
+                toggleFavorite(itemId);
+                
+                // Update button text
+                const isFavorited = favorites.includes(itemId);
+                viewerAddToFavorites.innerHTML = `<i class="${isFavorited ? 'fas' : 'far'} fa-heart"></i> ${isFavorited ? 'Remove from' : 'Add to'} Favorites`;
+                
+                // Update gallery item if visible
+                const galleryItem = document.querySelector(`.gallery-item[data-id="${itemId}"]`);
+                if (galleryItem) {
+                    const favoriteBtn = galleryItem.querySelector('.favorite-btn');
+                    const icon = favoriteBtn.querySelector('i');
+                    favoriteBtn.classList.toggle('favorited');
+                    icon.className = favoriteBtn.classList.contains('favorited') ? 'fas fa-heart' : 'far fa-heart';
+                }
+            });
+            
+            // Cart icon
             cartIcon.addEventListener('click', () => {
                 cartModal.classList.add('active');
                 overlay.classList.add('active');
                 document.body.style.overflow = 'hidden';
                 updateCartDisplay();
+            });
+            
+            // Wishlist icon
+            wishlistIcon.addEventListener('click', () => {
+                showNotification(`You have ${favorites.length} favorite item${favorites.length !== 1 ? 's' : ''}`);
             });
             
             // Close cart
@@ -1997,61 +1784,58 @@
                 document.body.style.overflow = 'auto';
             });
             
-            // Close cart with overlay
+            // Close cart and viewer with overlay
             overlay.addEventListener('click', () => {
                 cartModal.classList.remove('active');
-                quickviewModal.classList.remove('active');
+                viewerModal.classList.remove('active');
                 overlay.classList.remove('active');
                 document.body.style.overflow = 'auto';
             });
             
-            // Close quick view
-            quickviewClose.addEventListener('click', closeQuickView);
-            
-            // Filters
-            genderFilter.addEventListener('change', filterProducts);
-            typeFilter.addEventListener('change', filterProducts);
-            sortFilter.addEventListener('change', filterProducts);
-        }
-
-        // Filter products based on selected filters
-        function filterProducts() {
-            const gender = genderFilter.value;
-            const type = typeFilter.value;
-            const sort = sortFilter.value;
-            
-            filteredProducts = products.filter(product => {
-                // Filter by gender
-                if (gender !== 'all' && product.gender !== gender) {
-                    return false;
+            // Keyboard navigation
+            document.addEventListener('keydown', (e) => {
+                if (viewerModal.classList.contains('active')) {
+                    switch(e.key) {
+                        case 'Escape':
+                            closeViewer();
+                            break;
+                        case 'ArrowLeft':
+                            navigateViewer(-1);
+                            break;
+                        case 'ArrowRight':
+                            navigateViewer(1);
+                            break;
+                    }
                 }
-                
-                // Filter by frame type
-                if (type !== 'all' && product.type !== type) {
-                    return false;
-                }
-                
-                return true;
             });
             
-            // Sort products
-            switch (sort) {
-                case 'price-low':
-                    filteredProducts.sort((a, b) => a.price - b.price);
-                    break;
-                case 'price-high':
-                    filteredProducts.sort((a, b) => b.price - a.price);
-                    break;
-                case 'newest':
-                    // Assuming newer products have higher IDs
-                    filteredProducts.sort((a, b) => b.id - a.id);
-                    break;
-                default:
-                    // Default sorting (by ID or whatever)
-                    filteredProducts.sort((a, b) => a.id - b.id);
-            }
+            // Smooth scrolling for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    
+                    const targetId = this.getAttribute('href');
+                    if (targetId === '#') return;
+                    
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 80,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
             
-            renderProducts();
+            // Header scroll effect
+            window.addEventListener('scroll', () => {
+                const header = document.querySelector('header');
+                if (window.scrollY > 50) {
+                    header.style.boxShadow = '0 4px 20px rgba(0, 0, 0, 0.1)';
+                } else {
+                    header.style.boxShadow = '0 2px 10px rgba(0, 0, 0, 0.05)';
+                }
+            });
         }
     </script>
 </body>
