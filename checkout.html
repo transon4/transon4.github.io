@@ -1,11 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Checkout - Vision Perfect</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
     <style>
         /* Reuse your main styles */
         * {
@@ -13,7 +16,7 @@
             padding: 0;
             box-sizing: border-box;
         }
-        
+
         :root {
             --primary-blue: #2563eb;
             --primary-blue-dark: #1d4ed8;
@@ -28,20 +31,20 @@
             --radius: 8px;
             --transition: all 0.3s ease;
         }
-        
+
         body {
             font-family: 'Montserrat', sans-serif;
             color: var(--text-dark);
             background-color: var(--light-gray);
             line-height: 1.6;
         }
-        
+
         .container {
             max-width: 1200px;
             margin: 0 auto;
             padding: 0 1.5rem;
         }
-        
+
         /* Header */
         header {
             background-color: var(--white);
@@ -49,13 +52,13 @@
             padding: 1rem 0;
             margin-bottom: 2rem;
         }
-        
+
         .header-container {
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
-        
+
         .logo {
             display: flex;
             align-items: center;
@@ -66,7 +69,7 @@
             color: var(--primary-blue);
             text-decoration: none;
         }
-        
+
         .back-to-shop {
             color: var(--primary-blue);
             text-decoration: none;
@@ -75,7 +78,7 @@
             align-items: center;
             gap: 0.5rem;
         }
-        
+
         /* Checkout Layout */
         .checkout-container {
             display: grid;
@@ -83,7 +86,7 @@
             gap: 3rem;
             margin-bottom: 3rem;
         }
-        
+
         .checkout-section {
             background: var(--white);
             border-radius: var(--radius);
@@ -91,7 +94,7 @@
             box-shadow: var(--shadow);
             margin-bottom: 1.5rem;
         }
-        
+
         .checkout-title {
             font-family: 'Poppins', sans-serif;
             font-size: 1.5rem;
@@ -99,19 +102,19 @@
             padding-bottom: 1rem;
             border-bottom: 2px solid var(--light-gray);
         }
-        
+
         /* Form Styles */
         .form-group {
             margin-bottom: 1.5rem;
         }
-        
+
         .form-group label {
             display: block;
             margin-bottom: 0.5rem;
             font-weight: 500;
             color: var(--text-dark);
         }
-        
+
         .form-control {
             width: 100%;
             padding: 0.75rem 1rem;
@@ -121,31 +124,31 @@
             font-size: 1rem;
             transition: var(--transition);
         }
-        
+
         .form-control:focus {
             outline: none;
             border-color: var(--primary-blue);
             box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
         }
-        
+
         .form-row {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 1rem;
         }
-        
+
         /* Order Summary */
         .order-summary {
             position: sticky;
             top: 2rem;
         }
-        
+
         .order-items {
             margin-bottom: 1.5rem;
             max-height: 300px;
             overflow-y: auto;
         }
-        
+
         .order-item {
             display: flex;
             justify-content: space-between;
@@ -153,37 +156,37 @@
             padding: 1rem 0;
             border-bottom: 1px solid var(--light-gray);
         }
-        
+
         .order-item:last-child {
             border-bottom: none;
         }
-        
+
         .item-info h4 {
             font-size: 0.95rem;
             margin-bottom: 0.25rem;
         }
-        
+
         .item-price {
             font-weight: 600;
             color: var(--primary-blue);
         }
-        
+
         .item-quantity {
             color: var(--dark-gray);
             font-size: 0.9rem;
         }
-        
+
         .price-breakdown {
             margin-bottom: 1.5rem;
         }
-        
+
         .price-row {
             display: flex;
             justify-content: space-between;
             padding: 0.5rem 0;
             color: var(--text-light);
         }
-        
+
         .price-row.total {
             font-weight: 700;
             font-size: 1.2rem;
@@ -192,14 +195,14 @@
             margin-top: 1rem;
             padding-top: 1rem;
         }
-        
+
         /* Payment Methods */
         .payment-methods {
             display: flex;
             gap: 1rem;
             margin-bottom: 1.5rem;
         }
-        
+
         .payment-method {
             flex: 1;
             padding: 1rem;
@@ -209,22 +212,22 @@
             cursor: pointer;
             transition: var(--transition);
         }
-        
+
         .payment-method:hover {
             border-color: var(--primary-blue);
         }
-        
+
         .payment-method.active {
             border-color: var(--primary-blue);
             background-color: var(--light-blue);
         }
-        
+
         .payment-method i {
             font-size: 2rem;
             margin-bottom: 0.5rem;
             color: var(--primary-blue);
         }
-        
+
         /* Buttons */
         .btn {
             display: inline-block;
@@ -239,17 +242,17 @@
             font-size: 1rem;
             width: 100%;
         }
-        
+
         .btn-primary {
             background-color: var(--primary-blue);
             color: var(--white);
         }
-        
+
         .btn-primary:hover {
             background-color: var(--primary-blue-dark);
             transform: translateY(-2px);
         }
-        
+
         /* Footer */
         footer {
             background-color: var(--text-dark);
@@ -257,14 +260,14 @@
             padding: 3rem 0 2rem;
             margin-top: 3rem;
         }
-        
+
         .footer-container {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 2rem;
             margin-bottom: 2rem;
         }
-        
+
         .footer-logo {
             font-family: 'Poppins', sans-serif;
             font-size: 1.5rem;
@@ -272,7 +275,7 @@
             color: var(--white);
             margin-bottom: 1rem;
         }
-        
+
         .copyright {
             text-align: center;
             padding-top: 2rem;
@@ -280,35 +283,35 @@
             color: var(--medium-gray);
             font-size: 0.875rem;
         }
-        
+
         /* Responsive */
         @media (max-width: 992px) {
             .checkout-container {
                 grid-template-columns: 1fr;
             }
-            
+
             .order-summary {
                 position: static;
             }
         }
-        
+
         @media (max-width: 576px) {
             .form-row {
                 grid-template-columns: 1fr;
             }
-            
+
             .payment-methods {
                 flex-direction: column;
             }
         }
-        
+
         /* Loading */
         .loading {
             display: none;
             text-align: center;
             padding: 2rem;
         }
-        
+
         .spinner {
             width: 40px;
             height: 40px;
@@ -318,12 +321,17 @@
             animation: spin 1s linear infinite;
             margin: 0 auto 1rem;
         }
-        
+
         @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
         }
-        
+
         /* Success Modal */
         .success-modal {
             display: none;
@@ -337,11 +345,11 @@
             align-items: center;
             justify-content: center;
         }
-        
+
         .success-modal.active {
             display: flex;
         }
-        
+
         .success-content {
             background: var(--white);
             border-radius: var(--radius);
@@ -351,18 +359,19 @@
             width: 90%;
             animation: scaleIn 0.3s ease;
         }
-        
+
         .success-icon {
             font-size: 4rem;
             color: #10b981;
             margin-bottom: 1.5rem;
         }
-        
+
         @keyframes scaleIn {
             from {
                 opacity: 0;
                 transform: scale(0.9);
             }
+
             to {
                 opacity: 1;
                 transform: scale(1);
@@ -370,6 +379,7 @@
         }
     </style>
 </head>
+
 <body>
     <!-- Header -->
     <header>
@@ -387,7 +397,7 @@
     <!-- Checkout Content -->
     <div class="container">
         <h1 style="margin-bottom: 2rem; font-family: 'Poppins', sans-serif;">Checkout</h1>
-        
+
         <div class="checkout-container">
             <!-- Left Column: Shipping & Payment -->
             <div class="checkout-left">
@@ -405,22 +415,22 @@
                                 <input type="text" id="last-name" class="form-control" required>
                             </div>
                         </div>
-                        
+
                         <div class="form-group">
                             <label for="email">Email Address *</label>
                             <input type="email" id="email" class="form-control" required>
                         </div>
-                        
+
                         <div class="form-group">
                             <label for="phone">Phone Number *</label>
                             <input type="tel" id="phone" class="form-control" required>
                         </div>
-                        
+
                         <div class="form-group">
                             <label for="address">Street Address *</label>
                             <input type="text" id="address" class="form-control" required>
                         </div>
-                        
+
                         <div class="form-row">
                             <div class="form-group">
                                 <label for="city">City *</label>
@@ -431,7 +441,7 @@
                                 <input type="text" id="zip" class="form-control" required>
                             </div>
                         </div>
-                        
+
                         <div class="form-group">
                             <label for="country">Country *</label>
                             <select id="country" class="form-control" required>
@@ -446,11 +456,11 @@
                         </div>
                     </form>
                 </div>
-                
+
                 <!-- Payment Method -->
                 <div class="checkout-section">
                     <h2 class="checkout-title">Payment Method</h2>
-                    
+
                     <div class="payment-methods">
                         <div class="payment-method active" data-method="credit-card">
                             <i class="fas fa-credit-card"></i>
@@ -465,14 +475,15 @@
                             <div>Apple Pay</div>
                         </div>
                     </div>
-                    
+
                     <!-- Credit Card Form -->
                     <div id="credit-card-form">
                         <div class="form-group">
                             <label for="card-number">Card Number *</label>
-                            <input type="text" id="card-number" class="form-control" placeholder="1234 5678 9012 3456" required>
+                            <input type="text" id="card-number" class="form-control" placeholder="1234 5678 9012 3456"
+                                required>
                         </div>
-                        
+
                         <div class="form-row">
                             <div class="form-group">
                                 <label for="expiry-date">Expiry Date *</label>
@@ -483,19 +494,19 @@
                                 <input type="text" id="cvc" class="form-control" placeholder="123" required>
                             </div>
                         </div>
-                        
+
                         <div class="form-group">
                             <label for="card-name">Name on Card *</label>
                             <input type="text" id="card-name" class="form-control" required>
                         </div>
                     </div>
-                    
+
                     <!-- PayPal Info (hidden by default) -->
                     <div id="paypal-info" style="display: none; text-align: center; padding: 2rem;">
                         <i class="fab fa-paypal" style="font-size: 3rem; color: #003087; margin-bottom: 1rem;"></i>
                         <p>You will be redirected to PayPal to complete your payment after placing the order.</p>
                     </div>
-                    
+
                     <!-- Apple Pay Info (hidden by default) -->
                     <div id="apple-pay-info" style="display: none; text-align: center; padding: 2rem;">
                         <i class="fab fa-apple" style="font-size: 3rem; color: #000; margin-bottom: 1rem;"></i>
@@ -503,16 +514,16 @@
                     </div>
                 </div>
             </div>
-            
+
             <!-- Right Column: Order Summary -->
             <div class="checkout-right">
                 <div class="order-summary checkout-section">
                     <h2 class="checkout-title">Order Summary</h2>
-                    
+
                     <div class="order-items" id="order-items">
                         <!-- Cart items will be loaded here -->
                     </div>
-                    
+
                     <div class="price-breakdown">
                         <div class="price-row">
                             <span>Subtotal</span>
@@ -531,22 +542,23 @@
                             <span id="total">$0.00</span>
                         </div>
                     </div>
-                    
+
                     <div class="loading" id="checkout-loading">
                         <div class="spinner"></div>
                         <p>Processing your order...</p>
                     </div>
-                    
+
                     <button class="btn btn-primary" id="place-order-btn">Place Order</button>
-                    
+
                     <p style="font-size: 0.8rem; color: var(--dark-gray); margin-top: 1rem; text-align: center;">
-                        By placing your order, you agree to our <a href="#" style="color: var(--primary-blue);">Terms of Service</a> and <a href="#" style="color: var(--primary-blue);">Privacy Policy</a>.
+                        By placing your order, you agree to our <a href="#" style="color: var(--primary-blue);">Terms of
+                            Service</a> and <a href="#" style="color: var(--primary-blue);">Privacy Policy</a>.
                     </p>
                 </div>
             </div>
         </div>
     </div>
-    
+
     <!-- Success Modal -->
     <div class="success-modal" id="success-modal">
         <div class="success-content">
@@ -561,7 +573,8 @@
             </p>
             <div style="display: flex; gap: 1rem;">
                 <a href="index.html" class="btn btn-primary" style="flex: 1;">Continue Shopping</a>
-                <button class="btn" onclick="window.print()" style="flex: 1; background: var(--light-gray); color: var(--text-dark);">Print Receipt</button>
+                <button class="btn" onclick="window.print()"
+                    style="flex: 1; background: var(--light-gray); color: var(--text-dark);">Print Receipt</button>
             </div>
         </div>
     </div>
@@ -572,9 +585,10 @@
             <div class="footer-container">
                 <div class="footer-about">
                     <div class="footer-logo">Vision Perfect</div>
-                    <p>Providing premium eyewear since 2010. Our mission is to help everyone see the world clearly with style and comfort.</p>
+                    <p>Providing premium eyewear since 2010. Our mission is to help everyone see the world clearly with
+                        style and comfort.</p>
                 </div>
-                
+
                 <div class="footer-links">
                     <h4>Quick Links</h4>
                     <ul>
@@ -584,7 +598,7 @@
                         <li><a href="#">Contact Us</a></li>
                     </ul>
                 </div>
-                
+
                 <div class="footer-links">
                     <h4>Contact Info</h4>
                     <ul>
@@ -594,7 +608,7 @@
                     </ul>
                 </div>
             </div>
-            
+
             <div class="copyright">
                 <p>&copy; 2023 Vision Perfect. All rights reserved.</p>
             </div>
@@ -604,13 +618,13 @@
     <script>
         // Load cart data from localStorage
         let cart = [];
-        
+
         document.addEventListener('DOMContentLoaded', () => {
             loadCart();
             setupEventListeners();
             calculateTotals();
         });
-        
+
         // Load cart from localStorage
         function loadCart() {
             const savedCart = localStorage.getItem('visionPerfectCart');
@@ -622,18 +636,18 @@
                 window.location.href = 'index.html';
             }
         }
-        
+
         // Display order items in summary
         function displayOrderItems() {
             const orderItemsContainer = document.getElementById('order-items');
-            
+
             if (cart.length === 0) {
                 orderItemsContainer.innerHTML = '<p style="text-align: center; padding: 2rem;">Your cart is empty</p>';
                 return;
             }
-            
+
             let orderItemsHTML = '';
-            
+
             cart.forEach(item => {
                 orderItemsHTML += `
                     <div class="order-item">
@@ -645,33 +659,33 @@
                     </div>
                 `;
             });
-            
+
             orderItemsContainer.innerHTML = orderItemsHTML;
         }
-        
+
         // Calculate order totals
         function calculateTotals() {
             if (cart.length === 0) return;
-            
+
             // Calculate subtotal
             const subtotal = cart.reduce((total, item) => total + (item.price * item.quantity), 0);
-            
+
             // Calculate tax (8%)
             const taxRate = 0.08;
             const tax = subtotal * taxRate;
-            
+
             // Shipping (fixed for now)
             const shipping = 9.99;
-            
+
             // Calculate total
             const total = subtotal + tax + shipping;
-            
+
             // Update display
             document.getElementById('subtotal').textContent = `$${subtotal.toFixed(2)}`;
             document.getElementById('tax').textContent = `$${tax.toFixed(2)}`;
             document.getElementById('total').textContent = `$${total.toFixed(2)}`;
         }
-        
+
         // Setup event listeners
         function setupEventListeners() {
             // Payment method selection
@@ -681,18 +695,18 @@
                     document.querySelectorAll('.payment-method').forEach(m => {
                         m.classList.remove('active');
                     });
-                    
+
                     // Add active class to clicked
                     method.classList.add('active');
-                    
+
                     // Show corresponding form
                     const paymentMethod = method.dataset.method;
-                    
+
                     // Hide all forms first
                     document.getElementById('credit-card-form').style.display = 'none';
                     document.getElementById('paypal-info').style.display = 'none';
                     document.getElementById('apple-pay-info').style.display = 'none';
-                    
+
                     // Show selected form
                     if (paymentMethod === 'credit-card') {
                         document.getElementById('credit-card-form').style.display = 'block';
@@ -703,33 +717,33 @@
                     }
                 });
             });
-            
+
             // Place order button
             document.getElementById('place-order-btn').addEventListener('click', placeOrder);
-            
+
             // Form validation for real-time feedback
             document.querySelectorAll('.form-control').forEach(input => {
-                input.addEventListener('blur', function() {
+                input.addEventListener('blur', function () {
                     validateField(this);
                 });
             });
         }
-        
+
         // Validate form field
         function validateField(field) {
             const value = field.value.trim();
             const fieldId = field.id;
-            
+
             // Remove any existing error styling
             field.classList.remove('error');
-            
+
             // Validate based on field type
             if (field.required && !value) {
                 field.classList.add('error');
                 field.style.borderColor = '#ef4444';
                 return false;
             }
-            
+
             // Specific validations
             if (fieldId === 'email' && value) {
                 const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -739,7 +753,7 @@
                     return false;
                 }
             }
-            
+
             if (fieldId === 'phone' && value) {
                 const phoneRegex = /^[\+]?[1-9][\d]{0,15}$/;
                 if (!phoneRegex.test(value.replace(/[^0-9+]/g, ''))) {
@@ -748,24 +762,24 @@
                     return false;
                 }
             }
-            
+
             field.style.borderColor = '';
             return true;
         }
-        
+
         // Validate entire form
         function validateForm() {
             let isValid = true;
-            
+
             // Get all required fields
             const requiredFields = document.querySelectorAll('.form-control[required]');
-            
+
             requiredFields.forEach(field => {
                 if (!validateField(field)) {
                     isValid = false;
                 }
             });
-            
+
             // Additional validation for credit card if selected
             const activeMethod = document.querySelector('.payment-method.active').dataset.method;
             if (activeMethod === 'credit-card') {
@@ -777,10 +791,10 @@
                     }
                 });
             }
-            
+
             return isValid;
         }
-        
+
         // Place order function
         function placeOrder() {
             // Validate form
@@ -788,29 +802,29 @@
                 alert('Please fill in all required fields correctly.');
                 return;
             }
-            
+
             // Show loading
             document.getElementById('checkout-loading').style.display = 'block';
             document.getElementById('place-order-btn').disabled = true;
-            
+
             // Simulate API call delay
             setTimeout(() => {
                 // Generate random order ID
-                const orderId = 'VP-' + new Date().getFullYear() + '-' + 
-                              String(Math.floor(Math.random() * 10000)).padStart(4, '0');
-                
+                const orderId = 'VP-' + new Date().getFullYear() + '-' +
+                    String(Math.floor(Math.random() * 10000)).padStart(4, '0');
+
                 // Update order ID in success modal
                 document.getElementById('order-id').textContent = orderId;
-                
+
                 // Hide loading
                 document.getElementById('checkout-loading').style.display = 'none';
-                
+
                 // Clear cart
                 localStorage.removeItem('visionPerfectCart');
-                
+
                 // Show success modal
                 document.getElementById('success-modal').classList.add('active');
-                
+
                 // Save order to localStorage for order history (optional)
                 const order = {
                     id: orderId,
@@ -818,43 +832,44 @@
                     items: cart,
                     total: document.getElementById('total').textContent
                 };
-                
+
                 // Save order history (optional feature)
                 let orderHistory = JSON.parse(localStorage.getItem('visionPerfectOrders') || '[]');
                 orderHistory.push(order);
                 localStorage.setItem('visionPerfectOrders', JSON.stringify(orderHistory));
-                
+
             }, 2000); // 2 second delay to simulate processing
         }
-        
+
         // Auto-format card number
-        document.getElementById('card-number')?.addEventListener('input', function(e) {
+        document.getElementById('card-number')?.addEventListener('input', function (e) {
             let value = e.target.value.replace(/\s+/g, '').replace(/[^0-9]/gi, '');
             let matches = value.match(/\d{4,16}/g);
             let match = matches && matches[0] || '';
             let parts = [];
-            
+
             for (let i = 0; i < match.length; i += 4) {
                 parts.push(match.substring(i, i + 4));
             }
-            
+
             if (parts.length) {
                 e.target.value = parts.join(' ');
             } else {
                 e.target.value = value;
             }
         });
-        
+
         // Auto-format expiry date
-        document.getElementById('expiry-date')?.addEventListener('input', function(e) {
+        document.getElementById('expiry-date')?.addEventListener('input', function (e) {
             let value = e.target.value.replace(/\s+/g, '').replace(/[^0-9]/gi, '');
-            
+
             if (value.length >= 2) {
                 value = value.substring(0, 2) + '/' + value.substring(2, 4);
             }
-            
+
             e.target.value = value;
         });
     </script>
 </body>
+
 </html>
